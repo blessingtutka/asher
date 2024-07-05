@@ -1,0 +1,15 @@
+@import './index.css';
+
+@layer components {
+    /* Nav */
+    .nav {
+        @apply hidden relative mlg:flex mlg:order-2 gap-4 justify-center transition-all z-[100];
+    }
+    .nav.active {
+        @apply absolute flex flex-col top-20 left-0 right-0 transition-all origin-top
+        mx-auto bg-white shadow-nav items-center w-[90%] px-4;
+    }
+    .nav.active .nav-link {
+        @apply w-full pb-4 first:pt-4 border-b border-solid border-primary_50 last:border-b-0 text-center;
+    }
+}

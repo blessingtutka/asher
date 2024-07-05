@@ -1,0 +1,11 @@
+@import './index.css';
+
+@layer components {
+    /* Buttons */
+    .btn {
+        @apply transition-all ease-in duration-300;
+    }
+    .main-btn {
+        @apply text-white bg-primary p-2 rounded-md active:shadow-inner hover:bg-secondary;
+    }
+}

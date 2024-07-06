@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import tailwindBootstrapGrid from 'tailwind-bootstrap-grid';
+
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
@@ -11,6 +14,7 @@ export default {
                 tertiary: '#FF5E8E',
                 nav: '#939EA4',
                 content: '#727272',
+                bord: '#E3DBD8',
             },
             screens: {
                 ssm: '576px',
@@ -19,6 +23,9 @@ export default {
             boxShadow: {
                 header: '0px 15px 10px -20px rgba(0,0,0,0.45)',
                 nav: 'rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',
+            },
+            fontFamily: {
+                jakarta: ['Plus Jakarta Sans', 'sans-serif'],
             },
         },
     },
@@ -29,8 +36,15 @@ export default {
                     borderImage: 'linear-gradient(to right, transparent, #b2b2b2, transparent) 1',
                 },
             };
-
             addUtilities(newUtilities, ['responsive', 'hover']);
         },
+        tailwindBootstrapGrid({
+            containerMaxWidths: {
+                sm: '540px',
+                md: '720px',
+                lg: '960px',
+                xl: '1140px',
+            },
+        }),
     ],
 };

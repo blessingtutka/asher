@@ -1,6 +1,19 @@
 @import './index.css';
 
 @layer components {
+    body {
+        @apply font-jakarta;
+    }
+    /* small */
+    .bordered {
+        @apply border border-solid;
+    }
+    .flexed {
+        @apply flex justify-center items-center;
+    }
+    .flexed-space {
+        @apply flex justify-between items-center;
+    }
     /* Buttons */
     .btn {
         @apply transition-all ease-in duration-300;

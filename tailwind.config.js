@@ -10,6 +10,7 @@ export default {
                 secondary_50: 'rgba(166, 77, 121, 0.3)',
                 tertiary: '#FF5E8E',
                 nav: '#939EA4',
+                content: '#727272',
             },
             screens: {
                 ssm: '576px',

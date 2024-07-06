@@ -12,4 +12,8 @@
     .nav.active .nav-link {
         @apply w-full pb-4 first:pt-4 border-b border-solid border-primary_50 last:border-b-0 text-center;
     }
+    /* Links */
+    .footer-link {
+        @apply text-nav hover:text-tertiary;
+    }
 }

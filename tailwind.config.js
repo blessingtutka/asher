@@ -9,6 +9,7 @@ export default {
                 secondary: '#A64D79',
                 secondary_50: 'rgba(166, 77, 121, 0.3)',
                 tertiary: '#FF5E8E',
+                nav: '#939EA4',
             },
             screens: {
                 ssm: '576px',
@@ -20,5 +21,15 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addUtilities }) {
+            const newUtilities = {
+                '.border-image-gradient': {
+                    borderImage: 'linear-gradient(to right, transparent, #b2b2b2, transparent) 1',
+                },
+            };
+
+            addUtilities(newUtilities, ['responsive', 'hover']);
+        },
+    ],
 };

@@ -7,6 +7,11 @@
     body {
         @apply font-jakarta;
     }
+    /* Input */
+    input,
+    textarea {
+        @apply !outline-none !shadow-none border-0 focus:border focus:border-solid focus:border-primary;
+    }
     /* small */
     .bordered {
         @apply border border-solid;
@@ -46,5 +51,10 @@
 
     .job-card.active .info {
         @apply bg-tertiary text-white;
+    }
+
+    /* Contact */
+    .contact .submit-btn {
+        @apply bg-primary text-white w-full hover:bg-gray-800;
     }
 }

@@ -28,6 +28,9 @@ export default {
                 header: '0px 15px 10px -20px rgba(0,0,0,0.45)',
                 nav: 'rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',
             },
+            borderRadius: {
+                '4xl': '32px',
+            },
             fontFamily: {
                 jakarta: ['Plus Jakarta Sans', 'sans-serif'],
             },

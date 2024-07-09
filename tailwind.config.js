@@ -16,6 +16,10 @@ export default {
                 content: '#727272',
                 bord: '#E3DBD8',
             },
+
+            width: {
+                content: '90%',
+            },
             screens: {
                 ssm: '576px',
                 mlg: '992px',

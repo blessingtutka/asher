@@ -6,10 +6,8 @@ const Layout = () => {
     return (
         <div>
             <Header />
-            <main className='w-full flexed'>
-                <div className='w-[90%] md:w-4/5'>
-                    <Outlet />
-                </div>
+            <main className='w-full'>
+                <Outlet />
             </main>
             <Footer />
         </div>

@@ -1,12 +1,12 @@
 import About from './About';
 import Service from './Service';
+import Job from './Job';
 export default function Home() {
     return (
-        <div className='row'>
-            <div className='col-12 my-5'>
-                <About />
-                <Service />
-            </div>
+        <div className='my-5 flex flex-col justify-center items-center'>
+            <About />
+            <Service />
+            <Job />
         </div>
     );
 }

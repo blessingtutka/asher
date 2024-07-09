@@ -5,5 +5,7 @@ import Service4 from './service-4.svg?react';
 import CloseMenu from './menu-to-close-transition.svg?react';
 import OpenMenu from './close-to-menu-transition.svg?react';
 import Subtitle from './sub-title.svg?react';
+import CallToAction from './call-to-action.svg?react';
+import ActionBack from './call-back.svg?react';
 
-export { Service1, Service2, Service3, Service4, CloseMenu, OpenMenu, Subtitle };
+export { Service1, Service2, Service3, Service4, CloseMenu, OpenMenu, Subtitle, CallToAction, ActionBack };

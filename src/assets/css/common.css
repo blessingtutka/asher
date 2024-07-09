@@ -1,6 +1,9 @@
 @import './index.css';
 
 @layer components {
+    * {
+        box-sizing: border-box;
+    }
     body {
         @apply font-jakarta;
     }

@@ -8,5 +8,6 @@ import Subtitle from './sub-title.svg?react';
 import CallToAction from './call-to-action.svg?react';
 import ActionBack from './call-back.svg?react';
 import ContactIcon from './contact.svg?react';
+import SearchIcon from './search-solid.svg?react';
 
-export { Service1, Service2, Service3, Service4, CloseMenu, OpenMenu, Subtitle, CallToAction, ActionBack, ContactIcon };
+export { Service1, Service2, Service3, Service4, CloseMenu, OpenMenu, Subtitle, CallToAction, ActionBack, ContactIcon, SearchIcon };

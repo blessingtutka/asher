@@ -9,8 +9,15 @@
     }
     /* Input */
     input,
-    textarea {
-        @apply !outline-none !shadow-none border-0 focus:border focus:border-solid focus:border-primary;
+    textarea,
+    select {
+        @apply !outline-none !shadow-none border-0;
+    }
+    .search-input {
+        @apply border-0 focus:border-b focus:border-solid focus:border-primary;
+    }
+    .contact-input {
+        @apply border-0 focus:border focus:border-solid focus:border-primary;
     }
     /* small */
     .bordered {

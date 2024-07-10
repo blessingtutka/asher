@@ -11,7 +11,7 @@ interface SearchData {
     category: string;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
+const SearchForm: React.FC<SearchFormProps> = () => {
     const { register, handleSubmit } = useForm<SearchData>();
 
     const onSubmit = (data: SearchData) => {

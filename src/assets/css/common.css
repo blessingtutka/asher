@@ -13,6 +13,7 @@
     select {
         @apply !outline-none !shadow-none border-0;
     }
+
     .search-input {
         @apply border-0 focus:border-b focus:border-solid focus:border-primary;
     }

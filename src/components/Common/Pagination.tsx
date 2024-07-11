@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 
 interface PaginationProps {
@@ -21,14 +23,17 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     };
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     }, [currentPage]);
 
     return (
         <div className='col-12 flex justify-center items-center space-x-2'>
             {currentPage > 1 && (
                 <button onClick={handlePrevClick} className='px-3 py-1 bg-primary text-white rounded'>
-                    &lt; Prev
+                    <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
             )}
             {Array.from({ length: totalPages }, (_, i) => (
@@ -42,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             ))}
             {currentPage < totalPages && (
                 <button onClick={handleNextClick} className='px-3 py-1 bg-primary text-white rounded'>
-                    Next &gt;
+                    <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             )}
         </div>

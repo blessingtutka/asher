@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSwiperSlide } from 'swiper/react';
 
 interface JobItem {
@@ -49,7 +50,9 @@ const JobCard: React.FC<JobCardProps> = ({ item }) => {
                     <h2 className='text-lg text-center font-bold'>{item.companyName}</h2>
                 </div>
                 <div className='info p-4 rounded-xl mt-auto'>
-                    <h3 className='text-xl font-bold'>{item.jobTitle}</h3>
+                    <Link to={`/job/detail`}>
+                        <h3 className='text-xl font-bold'>{item.jobTitle}</h3>
+                    </Link>
                     <p className='mt-2'>{item.salary}</p>
                     <p>{item.location}</p>
                     <button className='apply-btn'>Apply Now &rarr;</button>

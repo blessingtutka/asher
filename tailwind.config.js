@@ -14,6 +14,7 @@ export default {
                 tertiary: '#FF5E8E',
                 nav: '#939EA4',
                 content: '#727272',
+                content2: '#707070',
                 bord: '#E3DBD8',
             },
 

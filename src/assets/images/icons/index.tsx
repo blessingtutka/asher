@@ -10,5 +10,24 @@ import ActionBack from './call-back.svg?react';
 import ContactIcon from './contact.svg?react';
 import SearchIcon from './search-solid.svg?react';
 import ArrowL from './arrowL.svg?react';
+import CheckIcon from './checked.svg?react';
+import DottedImage1 from './dotted-image.svg?react';
+import DottedImage2 from './dotted-image2.svg?react';
 
-export { Service1, Service2, Service3, Service4, CloseMenu, OpenMenu, Subtitle, CallToAction, ActionBack, ContactIcon, SearchIcon, ArrowL };
+export {
+    Service1,
+    Service2,
+    Service3,
+    Service4,
+    CloseMenu,
+    OpenMenu,
+    Subtitle,
+    CallToAction,
+    ActionBack,
+    ContactIcon,
+    SearchIcon,
+    ArrowL,
+    CheckIcon,
+    DottedImage1,
+    DottedImage2,
+};

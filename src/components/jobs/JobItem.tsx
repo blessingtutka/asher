@@ -1,7 +1,8 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import JobImage from '../../assets/images/about-2.jpg';
 import logo from '../../assets/images/employer-logo.png';
+
 type JobItemProps = {
     title: string;
     description: string;
@@ -24,7 +25,9 @@ const JobItem: React.FC<JobItemProps> = ({ title, description, salary }) => {
                     </div>
                 </div>
                 <div className='p-4'>
-                    <h2 className='text-lg mb-2'>{title}</h2>
+                    <Link to={`/job/detail`}>
+                        <h2 className='text-lg mb-2'>{title}</h2>
+                    </Link>
                     <p className='text-gray-500 text-sm'>{description}</p>
                 </div>
                 <div className='flex justify-between items-center p-4'>

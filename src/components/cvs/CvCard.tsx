@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import about1 from '../../assets/images/about-1.jpg';
 import { ArrowL } from '../../assets/images/icons';
 interface CardProps {
@@ -16,10 +17,10 @@ const CvCard: React.FC<CardProps> = ({ name, description }) => {
                 <div className='pt-6 pr-2 h-full'>
                     <h2 className='text-xl font-semibold mb-2'>{name}</h2>
                     <p className='text-gray-600 mb-4'>{description}</p>
-                    <a href='#' className='text-secondary flex items-center gap-2 mt-auto'>
+                    <Link to={`/worker/detail`} className='text-secondary flex items-center gap-2 mt-auto'>
                         Read More
                         <ArrowL />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

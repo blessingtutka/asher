@@ -47,5 +47,16 @@
         "typescript": "^5.4.5",
         "vite": "^5.2.0",
         "vite-plugin-svgr": "^4.2.0"
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx}": [
+            "eslint --quiet --fix",
+            "prettier --write"
+        ]
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
     }
 }

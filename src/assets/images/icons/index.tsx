@@ -13,6 +13,7 @@ import ArrowL from './arrowL.svg?react';
 import CheckIcon from './checked.svg?react';
 import DottedImage1 from './dotted-image.svg?react';
 import DottedImage2 from './dotted-image2.svg?react';
+import AuthIcon from './authIcon.svg?react';
 
 export {
     Service1,
@@ -30,4 +31,5 @@ export {
     CheckIcon,
     DottedImage1,
     DottedImage2,
+    AuthIcon,
 };

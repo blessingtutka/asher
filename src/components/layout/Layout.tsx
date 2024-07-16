@@ -2,8 +2,11 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import '../../assets/css/layout.css';
+import { useApp } from '../../context/ApplicationContext';
+import AuthModal from '../../pages/auth/AuthModal';
 import { ScrollRestoration } from 'react-router-dom';
 const Layout = () => {
+    const { modalOpen } = useApp();
     return (
         <div>
             <Header />
@@ -12,6 +15,7 @@ const Layout = () => {
                 <Outlet />
             </main>
             <Footer />
+            {modalOpen && <AuthModal />}
         </div>
     );
 };

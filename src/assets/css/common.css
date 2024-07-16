@@ -34,7 +34,24 @@
     .contact-input {
         @apply border-0 focus:border focus:border-solid focus:border-primary;
     }
+
+    .login .form-control {
+        @apply w-full;
+    }
+
+    .form-control {
+        @apply border border-solid border-[#E7E7E7] px-4 py-3 focus:border-primary rounded-xl;
+    }
+    .form-control.error {
+        @apply border border-solid border-red-500 bg-red-100;
+    }
+    input[type='checkbox'] {
+        accent-color: #1e003f;
+    }
     /* small */
+    .links {
+        @apply cursor-pointer text-primary hover:text-secondary;
+    }
     .bordered {
         @apply border border-solid;
     }
@@ -43,6 +60,17 @@
     }
     .flexed-space {
         @apply flex justify-between items-center;
+    }
+    /* Model */
+    #modal::-webkit-scrollbar-thumb {
+        border: 4px solid transparent;
+        border-radius: 8px;
+        background-clip: padding-box;
+        background-color: #1e003f;
+        margin-left: 5px;
+    }
+    #modal::-webkit-scrollbar {
+        width: 14px;
     }
     /* Buttons */
     .btn {

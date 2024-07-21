@@ -14,8 +14,9 @@ import CheckIcon from './checked.svg?react';
 import DottedImage1 from './dotted-image.svg?react';
 import DottedImage2 from './dotted-image2.svg?react';
 import AuthIcon from './authIcon.svg?react';
-
+import MainBannerImage from './main-banner.svg?react';
 export {
+    MainBannerImage,
     Service1,
     Service2,
     Service3,

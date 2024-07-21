@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import JobImage from '../../assets/images/about-2.jpg';
 import logo from '../../assets/images/employer-logo.png';
-
+import { useNavigate } from 'react-router-dom';
 type JobItemProps = {
     title: string;
     description: string;
@@ -12,6 +12,11 @@ type JobItemProps = {
 };
 
 const JobItem: React.FC<JobItemProps> = ({ title, description, salary }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/apply/${title}`);
+    };
     return (
         <div className='col-12 md:col-6'>
             <div className='w-full m-4 border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between'>
@@ -32,7 +37,9 @@ const JobItem: React.FC<JobItemProps> = ({ title, description, salary }) => {
                 </div>
                 <div className='flex justify-between items-center p-4'>
                     <div className='text-lg text-primary'>${salary.toFixed(2)}</div>
-                    <button className='p-2 bg-primary text-white rounded'>Apply Now</button>
+                    <button onClick={handleClick} className='p-2 bg-primary text-white rounded'>
+                        Apply Now
+                    </button>
                 </div>
             </div>
         </div>

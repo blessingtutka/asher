@@ -4,7 +4,7 @@ import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-
+import { OptionType } from './DataSelect';
 export interface FormInputData {
     label: string;
     type: string;
@@ -12,6 +12,7 @@ export interface FormInputData {
     placeholder?: string;
     required?: boolean;
     icon?: IconProp;
+    options?: (inputValue: string) => Promise<OptionType[]>;
 }
 
 export interface FormInputProps {
@@ -22,10 +23,9 @@ export interface FormInputProps {
 }
 
 const FormInput: React.FC<FormInputProps> = ({ input, id, register, errors }) => {
-    const errorMessages = errors && errors[input.name]?.message;
-    const errorMessageString = typeof errorMessages === 'string' ? errorMessages : undefined;
+    const errorMessages = errors && (errors[input.name]?.message as string);
     // const hasError = !!(errors && errorMessages);
-    const hasError = !!errorMessageString;
+    const hasError = !!errorMessages;
 
     return (
         <div className='formInput flex flex-col gap-2'>
@@ -34,13 +34,24 @@ const FormInput: React.FC<FormInputProps> = ({ input, id, register, errors }) =>
                 {input.required && <span className=' text-red-600'>*</span>}
             </label>
             <div className='relative'>
-                <input
-                    id={`Input${id}`}
-                    type={input.type}
-                    placeholder={input.placeholder}
-                    {...register(input.name, validation(input))}
-                    className={`form-control w-full pr-10 ${hasError ? 'error' : ''} ${input.icon ? 'pl-9' : ''}`}
-                />
+                {input.type == 'textarea' ? (
+                    <textarea
+                        id={`Input${id}`}
+                        rows={5}
+                        placeholder={input.placeholder}
+                        {...register(input.name, validation(input))}
+                        className={`form-control w-full pr-10 ${hasError ? 'error' : ''} ${input.icon ? 'pl-9' : ''}`}
+                    />
+                ) : (
+                    <input
+                        id={`Input${id}`}
+                        type={input.type}
+                        placeholder={input.placeholder}
+                        {...register(input.name, validation(input))}
+                        className={`form-control w-full pr-10 ${hasError ? 'error' : ''} ${input.icon ? 'pl-9' : ''}`}
+                    />
+                )}
+
                 {input.icon && (
                     <FontAwesomeIcon
                         icon={input.icon}
@@ -50,7 +61,7 @@ const FormInput: React.FC<FormInputProps> = ({ input, id, register, errors }) =>
             </div>
             {hasError && (
                 <span className='text-red-600'>
-                    <FontAwesomeIcon icon={faTriangleExclamation} className='mr-2' /> {errorMessageString}
+                    <FontAwesomeIcon icon={faTriangleExclamation} className='mr-2' /> {errorMessages}
                 </span>
             )}
         </div>

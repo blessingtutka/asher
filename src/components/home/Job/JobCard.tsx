@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSwiperSlide } from 'swiper/react';
+import { useNavigate } from 'react-router-dom';
 
 interface JobItem {
     companyName: string;
@@ -18,6 +19,11 @@ interface JobCardProps {
 
 const JobCard: React.FC<JobCardProps> = ({ item }) => {
     const swiperSlide = useSwiperSlide();
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/apply/${item.jobTitle}`);
+    };
     const [active, setActive] = useState(swiperSlide.isNext);
 
     useEffect(() => {
@@ -55,7 +61,9 @@ const JobCard: React.FC<JobCardProps> = ({ item }) => {
                     </Link>
                     <p className='mt-2'>{item.salary}</p>
                     <p>{item.location}</p>
-                    <button className='apply-btn'>Apply Now &rarr;</button>
+                    <button onClick={handleClick} className='apply-btn'>
+                        Apply Now &rarr;
+                    </button>
                 </div>
             </div>
         </div>

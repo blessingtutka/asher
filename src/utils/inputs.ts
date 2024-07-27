@@ -18,9 +18,23 @@ import {
     faSquarePhone,
     faClipboardUser,
     faUsersGear,
+    faUserTie,
+    faUserCheck,
     faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import jobCategory from './jobCategory';
+
+const UserTypeLoadOptions = async (inputValue: string) => {
+    try {
+        const userTypeOptions = [
+            { value: 'EMPLOYER', label: 'Employer', icon: faUserTie },
+            { value: 'WORKER', label: 'Worker', icon: faUserCheck },
+        ].filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
+        return userTypeOptions;
+    } catch (e) {
+        return [];
+    }
+};
 
 const jobTypeLoadOptions = async (inputValue: string) => {
     try {
@@ -48,9 +62,17 @@ const password = { label: 'Password', type: 'password', placeholder: '******', n
 
 const loginInputs = [{ ...email }, { ...password }];
 const registerInputs = [
-    { label: 'Full Name', type: 'text', placeholder: 'Asher Warden', name: 'fullname', required: true, icon: faUser },
+    { label: 'Full Name', type: 'text', placeholder: 'Asher Warden', name: 'fullName', required: true, icon: faUser },
     { ...email },
-    { label: 'Who are you', type: 'select', placeholder: 'Select ...', name: 'whoareyou', required: true, icon: faIdCard },
+    {
+        label: 'Who are you',
+        type: 'select',
+        placeholder: 'Select ...',
+        name: 'role',
+        required: true,
+        icon: faIdCard,
+        options: UserTypeLoadOptions,
+    },
     { label: 'Password', type: 'password', placeholder: '******', name: 'password', required: true, icon: faLock },
     { label: 'Confirm Password', type: 'password', placeholder: '******', name: 'comfirm', required: true, icon: faLock },
 ];

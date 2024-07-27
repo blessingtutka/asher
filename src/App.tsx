@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppContextProvider from './context/ApplicationContext';
+import UserProvider from './context/UserContext';
 import routes from './routes';
 
 // Styles
@@ -9,9 +10,11 @@ const router = createBrowserRouter(routes);
 
 const App = () => {
     return (
-        <AppContextProvider>
-            <RouterProvider router={router} />
-        </AppContextProvider>
+        <UserProvider>
+            <AppContextProvider>
+                <RouterProvider router={router} />
+            </AppContextProvider>
+        </UserProvider>
     );
 };
 

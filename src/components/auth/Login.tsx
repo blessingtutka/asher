@@ -1,7 +1,13 @@
 import FormInput from '../Common/Input';
-import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useApp } from '../../context/ApplicationContext';
 import { loginInputs } from '../../utils/inputs';
+import { login as loginService } from '../../services/auth.service';
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import Loading from '../Common/Loading';
+import notify from '../../utils/notificationService';
 
 export default function Login() {
     const {
@@ -9,11 +15,34 @@ export default function Login() {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const { switchToSignup, switchToRest } = useAuth();
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const navigate = useNavigate();
+    const { setModalOpen } = useApp();
+    const { switchToSignup, switchToRest } = useAuth();
+    const [loading, setLoading] = useState(false);
+
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        try {
+            setLoading(true);
+            const response = await loginService(data.email, data.password);
+            localStorage.setItem('token', response.token);
+            if (response?.role === 'EMPLOYER') {
+                navigate('/employer/jobs');
+            } else if (response?.role === 'WORKER') {
+                navigate('/worker/applications');
+            } else {
+                navigate('/');
+            }
+            setModalOpen(false);
+            notify.success('Login Successfully');
+        } catch (error: any) {
+            localStorage.removeItem('token');
+            notify.error(error.message || 'Login failed');
+        } finally {
+            setLoading(false);
+        }
     };
+
     return (
         <div className='login w-full flex flex-col gap-5'>
             <div className='title'>
@@ -32,18 +61,24 @@ export default function Login() {
                             Remember me
                         </label>
                     </div>
-                    <a href='javascript: void(0)' className='forgot links font-semibold' onClick={switchToRest}>
+                    <span className='forgot links font-semibold' onClick={switchToRest}>
                         forget password?
-                    </a>
+                    </span>
                 </div>
-                <button type='submit' className='w-full rounded-md bg-primary p-2 text-white'>
-                    sign in
-                </button>
+
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <button type='submit' disabled={loading} className='auth-btn'>
+                        sign in
+                    </button>
+                )}
+
                 <div className='w-full text-center'>
                     Don't have an account?
-                    <a href='javascript: void(0)' className='links font-medium' onClick={switchToSignup}>
+                    <span className='links font-medium' onClick={switchToSignup}>
                         Sign Up
-                    </a>
+                    </span>
                 </div>
             </form>
         </div>

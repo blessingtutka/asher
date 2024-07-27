@@ -69,6 +69,22 @@
         @apply flex items-center bg-white text-primary rounded-full px-6 py-2
          hover:bg-secondary hover:text-white transition border border-solid border-secondary;
     }
+    .auth-btn {
+        @apply w-full rounded-md bg-primary p-2 text-white border-2 border-solid border-transparent hover:border-secondary;
+    }
+    /* Avatar Dropdown */
+
+    .avatar-dropdown {
+        @apply absolute right-0 top-12 bg-white *:list-none rounded-md p-4 flex flex-col gap-2;
+        box-shadow:
+            rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+            rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
+
+    .avatar-dropdown li.link {
+        @apply hover:bg-primary_50 p-2 rounded-sm w-full cursor-pointer;
+    }
+
     /* Banner Css */
     .main-banner {
         @apply bg-fixed bg-cover bg-no-repeat bg-[url(/src/assets/images/icons/liquid-cheese-bg.svg)];

@@ -10,8 +10,8 @@ const validation = (input: { type: string; label: string; required?: boolean }) 
     minLength:
         input.type === 'password'
             ? {
-                  value: 6,
-                  message: 'Password must be at least 6 characters',
+                  value: 4,
+                  message: 'Password must be at least 4 characters',
               }
             : undefined,
 });

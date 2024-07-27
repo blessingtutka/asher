@@ -25,7 +25,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit }) => {
                         if (input.type == 'file') {
                             return (
                                 <Controller
-                                    key={index + 1}
+                                    key={index}
                                     name={input.name}
                                     control={control}
                                     rules={{ required: input.required ? 'File is required' : false }}
@@ -42,13 +42,12 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit }) => {
                         }
                         if (input.type == 'select') {
                             return (
-                                <div className='formInput flex flex-col gap-2'>
-                                    <label htmlFor={`Input${index + 1}`}>
+                                <div key={index} className='formInput flex flex-col gap-2'>
+                                    <label htmlFor={`InputSelect`}>
                                         <b>{input.label}</b>
                                         {input.required && <span className=' text-red-600'>*</span>}
                                     </label>
                                     <Controller
-                                        key={index}
                                         name={input.name}
                                         control={control}
                                         rules={{ required: input.required ? 'Required' : false }}

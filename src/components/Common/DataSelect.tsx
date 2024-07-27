@@ -44,8 +44,8 @@ const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOpti
                         borderColor: state.isFocused ? '#1e003f' : '#b2b2b2',
                     },
                 }),
-                menuPortal: (provided) => ({ ...provided, zIndex: 999 }),
-                menu: (provided) => ({ ...provided, zIndex: 999 }),
+                menuPortal: (provided) => ({ ...provided, zIndex: 99999 }),
+                menu: (provided) => ({ ...provided, zIndex: 99999 }),
             }}
             onChange={onChange}
             menuPortalTarget={document.body}

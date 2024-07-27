@@ -6,14 +6,19 @@ import { useHeaderContext } from '../../../context/HeaderContext';
 const mobileLinkVars = {
     initial: {
         opacity: 0,
-        y: 20,
     },
     open: {
         opacity: 1,
-        y: 0,
         transition: {
-            duration: 0.4,
-            ease: [0.68, -0.55, 0.27, 1.55],
+            duration: 0.3,
+            ease: 'easeInOut', // simple ease in-out
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut', // simple ease in-out
         },
     },
 };
@@ -35,7 +40,7 @@ const NavLink: React.FC<NavLinkProps> = ({ title, href }) => {
     return mobileNav ? (
         <AnimatePresence>
             {click && (
-                <motion.div variants={mobileLinkVars} className={className}>
+                <motion.div key={href} variants={mobileLinkVars} initial='initial' animate='open' exit='exit' className={className}>
                     <Link to={href}>{title}</Link>
                 </motion.div>
             )}

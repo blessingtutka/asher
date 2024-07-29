@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/ApplicationContext';
+import { useUser } from '../../context/UserContext';
 import { loginInputs } from '../../utils/inputs';
 import { login as loginService } from '../../services/auth.service';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
@@ -19,13 +20,14 @@ export default function Login() {
     const navigate = useNavigate();
     const { setModalOpen } = useApp();
     const { switchToSignup, switchToRest } = useAuth();
+    const { setToken, removeUser } = useUser();
     const [loading, setLoading] = useState(false);
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         try {
             setLoading(true);
             const response = await loginService(data.email, data.password);
-            localStorage.setItem('token', response.token);
+            setToken(response.token);
             if (response?.role === 'EMPLOYER') {
                 navigate('/employer/jobs');
             } else if (response?.role === 'WORKER') {
@@ -36,7 +38,7 @@ export default function Login() {
             setModalOpen(false);
             notify.success('Login Successfully');
         } catch (error: any) {
-            localStorage.removeItem('token');
+            removeUser();
             notify.error(error.message || 'Login failed');
         } finally {
             setLoading(false);

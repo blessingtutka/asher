@@ -1,6 +1,7 @@
 import avatar from '../../../assets/images/avatar.png';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../../../context/UserContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface AvatarProps {
@@ -11,11 +12,12 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ email, role }) => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
+    const { removeUser } = useUser();
 
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are you sure you want to log out?');
         if (confirmLogout) {
-            localStorage.removeItem('token');
+            removeUser();
             navigate('/');
         }
     };

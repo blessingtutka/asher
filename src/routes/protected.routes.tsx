@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom';
-import { useUser } from './context/UserContext';
-import { useApp } from './context/ApplicationContext';
-import notify from './utils/notificationService';
+import { useUser } from '../context/UserContext';
+import { useApp } from '../context/ApplicationContext';
+import notify from '../utils/notificationService';
 
-interface PrivateRouteProps {
+interface ProtectedRouteProps {
     role: string;
     element: React.ReactElement;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ role, element }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ role, element }) => {
     const { getUser } = useUser();
     const { setModalOpen } = useApp();
     const user = getUser();
@@ -28,4 +28,4 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ role, element }) => {
     return element;
 };
 
-export default PrivateRoute;
+export default ProtectedRoute;

@@ -56,6 +56,18 @@ const jobCategoryLoadOptions = async (inputValue: string) => {
     }
 };
 
+const EmployerTypeLoadOptions = async (inputValue: string) => {
+    try {
+        const userTypeOptions = [
+            { value: 'ORGANISATION', label: 'Organisation', icon: faUserTie },
+            { value: 'PERSON', label: 'Person', icon: faUserCheck },
+        ].filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
+        return userTypeOptions;
+    } catch (e) {
+        return [];
+    }
+};
+
 // AUTH  IMPUTS
 const email = { label: 'Email', type: 'email', placeholder: 'asher@gmail.com', name: 'email', required: true, icon: faEnvelope };
 const password = { label: 'Password', type: 'password', placeholder: '******', name: 'password', required: true, icon: faLock };
@@ -129,13 +141,13 @@ const workerInputs = [
 // ADD EMPLOYEE INFO
 const employerInputs = [
     { label: 'Name', type: 'text', placeholder: 'Tech Corp', name: 'name', required: true, icon: faUser },
-    { label: 'Company Logo', type: 'file', placeholder: 'company-logo.png', name: 'log', required: true },
-    { label: 'Description', type: 'textarea', placeholder: 'Describe your company...', name: 'description', required: true, icon: faCircleInfo },
-    { label: 'Type', type: 'text', placeholder: 'Industry Type', name: 'type', required: true, icon: faUser },
+    { label: 'Company Logo', type: 'file', placeholder: 'company-logo.png', name: 'profile' },
+    { label: 'Description', type: 'textarea', placeholder: 'Describe your company...', name: 'description', icon: faCircleInfo },
+    { label: 'Type', type: 'select', placeholder: 'Industry Type', name: 'type', options: EmployerTypeLoadOptions, icon: faUser },
     { label: 'Bio', type: 'textarea', placeholder: 'Company bio...', name: 'bio', icon: faBookReader },
-    { label: 'Activity', type: 'text', placeholder: 'Field of Activity', name: 'activity', required: true, icon: faUsersGear },
-    { label: 'Address', type: 'text', placeholder: '123 Corporate St, New York, NY', name: 'address', required: true, icon: faMapLocationDot },
-    { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', required: true, icon: faSquarePhone },
+    { label: 'Activity', type: 'text', placeholder: 'Field of Activity', name: 'activity', icon: faUsersGear },
+    { label: 'Address', type: 'text', placeholder: '123 Corporate St, New York, NY', name: 'address', icon: faMapLocationDot },
+    { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', icon: faSquarePhone },
 ];
 
 export { loginInputs, registerInputs, resetInputs, applyInputs, jobPostInputs, workerInputs, employerInputs };

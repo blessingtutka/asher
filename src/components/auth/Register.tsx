@@ -1,6 +1,5 @@
 import FormInput from '../Common/Input';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/ApplicationContext';
 import { useAuth } from '../../context/AuthContext';
 import { registerInputs } from '../../utils/inputs';
@@ -20,25 +19,16 @@ export default function Register() {
 
     const { switchToSignin } = useAuth();
     const { setModalOpen } = useApp();
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         try {
             setLoading(true);
-            const response = await registerService(data);
-            localStorage.setItem('token', response.token);
-            if (response?.role === 'EMPLOYER') {
-                navigate('/employer/jobs');
-            } else if (response?.role === 'WORKER') {
-                navigate('/worker/applications');
-            } else {
-                navigate('/');
-            }
-            setModalOpen(false);
-            notify.success('Login Successfully');
+            await registerService(data);
+            setModalOpen(true);
+            switchToSignin();
+            notify.success('Account Created Successfully');
         } catch (error: any) {
-            localStorage.removeItem('token');
             notify.error(error.message || 'Login failed');
         } finally {
             setLoading(false);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import { components, OptionProps, GroupBase } from 'react-select';
 
@@ -16,6 +16,7 @@ interface DataSelectProps {
     placeholder?: string;
     onChange?: (newValue: OnChangeValue<OptionType, false>, actionMeta: ActionMeta<OptionType>) => void;
     loadOptions: (inputValue: string) => Promise<OptionType[]>;
+    defaultValue?: string;
 }
 
 const customOption = (props: OptionProps<OptionType, false, GroupBase<OptionType>>) => (
@@ -25,7 +26,17 @@ const customOption = (props: OptionProps<OptionType, false, GroupBase<OptionType
     </components.Option>
 );
 
-const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOptions }) => {
+const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOptions, defaultValue }) => {
+    const [initialOption, setInitialOption] = useState<OptionType | null>(null);
+
+    useEffect(() => {
+        if (defaultValue) {
+            loadOptions(defaultValue).then((options) => {
+                const option = options.find((opt) => opt.value === defaultValue);
+                setInitialOption(option || null);
+            });
+        }
+    }, [defaultValue, loadOptions]);
     return (
         <AsyncSelect
             loadOptions={loadOptions}
@@ -50,6 +61,7 @@ const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOpti
             onChange={onChange}
             menuPortalTarget={document.body}
             components={{ Option: customOption }}
+            {...(initialOption ? { value: initialOption } : {})}
         />
     );
 };

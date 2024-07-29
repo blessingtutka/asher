@@ -13,12 +13,17 @@ instance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        return response;
+    },
     (error) => {
-        if (error.response && error.response.status === 401) {
+        const originalRequest = error.config;
+        console.log(error.response.status);
+        console.log(originalRequest);
+        if (error.response.status === 401 && !originalRequest._retry) {
             localStorage.removeItem('token');
         }
-        return Promise.reject(error);
+        throw error;
     },
 );
 

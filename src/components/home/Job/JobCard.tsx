@@ -4,6 +4,7 @@ import { useSwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
 
 interface JobItem {
+    id?: string;
     companyName: string;
     jobTitle: string;
     salary: string;
@@ -53,7 +54,9 @@ const JobCard: React.FC<JobCardProps> = ({ item }) => {
                     </div>
                 </div>
                 <div className='mt-auto'>
-                    <h2 className='text-lg text-center font-bold'>{item.companyName}</h2>
+                    <Link to={`/employer/test`}>
+                        <h2 className='job-company'>{item.companyName}</h2>
+                    </Link>
                 </div>
                 <div className='info p-4 rounded-xl mt-auto'>
                     <Link to={`/job/detail`}>

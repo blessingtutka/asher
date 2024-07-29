@@ -1,25 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormInput, { FormInputData } from '../Common/Input';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller, FieldValues } from 'react-hook-form';
 import UploadField from './UploadField';
 import DataSelect from './DataSelect';
+import Loading from './Loading';
 interface FormProps {
     inputs: FormInputData[];
     handleOnSubmit: SubmitHandler<any>;
+    loading?: boolean;
+    initialValues?: InitialValues;
 }
 
-const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit }) => {
+interface InitialValues {
+    [key: string]: any;
+}
+
+const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {}, loading = false }) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
         control,
         setValue,
+        reset,
     } = useForm();
+
+    useEffect(() => {
+        reset(initialValues);
+    }, [initialValues, reset]);
+
+    const onSubmit = (data: FieldValues) => {
+        handleOnSubmit(data);
+        reset();
+    };
 
     return (
         <div className='login w-full flex flex-col gap-5'>
-            <form onSubmit={handleSubmit(handleOnSubmit)} className='w-full flex flex-col gap-4'>
+            <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-4'>
                 <div className='w-full flex flex-col gap-4'>
                     {inputs.map((input, index) => {
                         if (input.type == 'file') {
@@ -54,6 +71,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit }) => {
                                         render={({ field }) => (
                                             <DataSelect
                                                 {...field}
+                                                defaultValue={initialValues[input.name]}
                                                 loadOptions={input?.options || (() => Promise.resolve([]))}
                                                 placeholder={input.placeholder}
                                                 onChange={(selectedOption) => field.onChange(selectedOption)}
@@ -66,9 +84,14 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit }) => {
                         return <FormInput key={index} input={input} id={index + 1} register={register} errors={errors} />;
                     })}
                 </div>
-                <button type='submit' className='w-full rounded-md bg-primary p-2 text-white'>
-                    Send
-                </button>
+
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <button type='submit' className='w-full rounded-md bg-primary p-2 text-white'>
+                        Send
+                    </button>
+                )}
             </form>
         </div>
     );

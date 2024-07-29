@@ -1,4 +1,4 @@
-import { Job, Worker } from '../../interfaces/detail';
+import { Job, Worker, Employer } from '../../interfaces/detail';
 import workerImage from '../../assets/images/about-1.jpg';
 import jobImage from '../../assets/images/about-1.jpg';
 import logo from '../../assets/images/employer-logo.png';
@@ -16,6 +16,17 @@ export const exampleJob: Job = {
     experience: '3+ years',
     company: 'Tech Corp',
     phone: '+(1) 997 567 345',
+};
+
+export const exampleEmployer: Employer = {
+    profile: workerImage,
+    name: 'Employer Name',
+    activity: 'Employer Activity',
+    bio: `Employer Bio`,
+    description: `Employer Description`,
+    type: 'Type',
+    telephone: '(907) 555-0101',
+    user: { email: 'john.doe@example.com' },
 };
 
 export const exampleWorker: Worker = {

@@ -23,6 +23,18 @@ export interface Worker {
     skills: Skill[];
 }
 
+export interface Employer {
+    profile?: string;
+    name?: string;
+    description?: string;
+    type?: string;
+    bio?: string;
+    activity?: string;
+    address?: string;
+    telephone?: string;
+    user?: { email?: string };
+}
+
 export interface Skill {
     name: string;
     percentage: number;

@@ -1,10 +1,9 @@
 import { Job, Worker, Employer } from '../../interfaces/detail';
 import workerImage from '../../assets/images/about-1.jpg';
 import jobImage from '../../assets/images/about-1.jpg';
-import logo from '../../assets/images/employer-logo.png';
 export const exampleJob: Job = {
+    id: 'uidjob',
     image: jobImage,
-    logo: logo,
     title: 'Software Engineer',
     description: `IELTS score is internationally recognized as an English Language proficiency requirement 
     for higher education, in almost all countries including the USA, the United Kingdom, Australia, Canada, 
@@ -12,10 +11,7 @@ export const exampleJob: Job = {
     most universities accept a score of 6.0 for undergraduate admission and 6.0-7.0 for graduate admission. 
     There are two versions of the `,
     location: 'San Francisco, CA',
-    salary: '$120,000 - $140,000',
-    experience: '3+ years',
-    company: 'Tech Corp',
-    phone: '+(1) 997 567 345',
+    salary: 1200,
 };
 
 export const exampleEmployer: Employer = {

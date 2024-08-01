@@ -38,6 +38,15 @@
     .links {
         @apply cursor-pointer text-primary hover:text-secondary;
     }
+    .actions {
+        @apply cursor-pointer text-primary hover:text-secondary;
+    }
+    .actions .text {
+        @apply hidden;
+    }
+    .actions:hover .text {
+        @apply inline;
+    }
     .bordered {
         @apply border border-solid;
     }

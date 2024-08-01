@@ -9,6 +9,7 @@ interface UserContextType {
 }
 
 interface User {
+    id: string;
     email: string;
     role: string;
     token: string;
@@ -38,7 +39,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const getUser = (): User | null => {
         if (token) {
             const decoded: any = jwtDecode(token);
-            return { email: decoded.email, role: decoded.role, token: token };
+            return { id: decoded.userId, email: decoded.email, role: decoded.role, token: token };
         }
         return null;
     };

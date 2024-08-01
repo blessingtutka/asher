@@ -10,7 +10,7 @@ export interface Job {
     jobType?: string;
     createdAt?: string;
     updatedAt?: string;
-    employer?: { id?: string; profile?: string; name?: string; telephone?: string };
+    employer?: { id?: string; profile?: string; name?: string; telephone?: string; userId?: string };
 }
 
 export interface Worker {

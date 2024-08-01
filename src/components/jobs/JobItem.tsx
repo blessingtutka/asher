@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../utils/dateFormater';
 import { truncater } from '../../utils/truncater';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faPenToSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { deleteJob } from '../../services/job.service';
 import JobImage from '../../assets/images/about-2.jpg';
 import logo from '../../assets/images/employer-logo.png';
+import notify from '../../utils/notificationService';
 
 type JobProps = {
     job: Job;
@@ -19,18 +21,40 @@ const JobItem: React.FC<JobProps> = ({ job }) => {
     const { getUser } = useUser();
     const user = getUser();
 
+    const isUserEmployer = job.employer?.userId === user?.id;
+
     const handleClick = () => {
         navigate(`/apply/${job.title}/${job.id}`);
+    };
+
+    const handleRemove = async () => {
+        const confirmLogout = window.confirm('Are you sure you want to delete this job post?');
+        if (confirmLogout) {
+            try {
+                await deleteJob(job.id);
+                notify.success('Job deleted Successfully');
+            } catch (error: any) {
+                notify.error(error.message);
+            }
+        }
     };
 
     return (
         <div className='col-12 md:col-6'>
             <div className='w-full mb-4 border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between'>
                 <div className='relative w-full flex flex-col h-52 p-4 bg-gray-200'>
-                    {user && (
-                        <Link to={`/job/update/${job.id}`} className='links bg-slate-300 rounded-md p-1 absolute z-10 top-2 right-2 text-xs'>
-                            <FontAwesomeIcon icon={faPenToSquare} className='mr-1' /> Edit
+                    {isUserEmployer && (
+                        <Link to={`/job/update/${job.id}`} className='actions bg-slate-300 rounded-md p-1 absolute z-10 top-2 right-2 text-xs'>
+                            <FontAwesomeIcon icon={faPenToSquare} className='mr-1' /> <span className='text'>Edit</span>
                         </Link>
+                    )}
+                    {isUserEmployer && (
+                        <button
+                            onClick={handleRemove}
+                            className='actions bg-red-300 hover:text-red-600 rounded-md p-1 absolute z-10 top-10 right-2 text-xs'
+                        >
+                            <FontAwesomeIcon icon={faTrashAlt} className='mr-1' /> <span className='text'>Delete</span>
+                        </button>
                     )}
                     <img src={job.image ? job.image : JobImage} alt='about-2' className='absolute z-0 top-0 left-0 w-full h-full object-cover' />
                     <div className='w-12 h-12 relative overflow-hidden z-2 border border-primary rounded-lg'>

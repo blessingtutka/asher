@@ -33,7 +33,7 @@ const EmployerJobsPage: React.FC = () => {
             <PageBanner title={'Your Posted Job'} breadcrumbs={breadcrumbs} />
             <div className='!w-content flex flex-col min-h-40 my-5 justify-center items-center'>
                 {loading ? (
-                    <Loading className='!h-28' />
+                    <Loading className='!h-16' />
                 ) : error ? (
                     <Error message={error} />
                 ) : jobs.length === 0 ? (

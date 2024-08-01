@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import { components, OptionProps, GroupBase } from 'react-select';
-
+import { FieldValues, FieldErrors } from 'react-hook-form';
 import { ActionMeta, OnChangeValue } from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 export interface OptionType {
     label: string;
@@ -17,6 +18,8 @@ interface DataSelectProps {
     onChange?: (newValue: OnChangeValue<OptionType, false>, actionMeta: ActionMeta<OptionType>) => void;
     loadOptions: (inputValue: string) => Promise<OptionType[]>;
     defaultValue?: string;
+    name: string;
+    errors?: FieldErrors<FieldValues>;
 }
 
 const customOption = (props: OptionProps<OptionType, false, GroupBase<OptionType>>) => (
@@ -26,9 +29,10 @@ const customOption = (props: OptionProps<OptionType, false, GroupBase<OptionType
     </components.Option>
 );
 
-const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOptions, defaultValue }) => {
+const DataSelect: React.FC<DataSelectProps> = ({ placeholder, name, onChange, loadOptions, defaultValue, errors }) => {
     const [initialOption, setInitialOption] = useState<OptionType | null>(null);
-
+    const errorMessages = errors && (errors[name]?.message as string);
+    const hasError = !!errorMessages;
     useEffect(() => {
         if (defaultValue) {
             loadOptions(defaultValue).then((options) => {
@@ -38,31 +42,38 @@ const DataSelect: React.FC<DataSelectProps> = ({ placeholder, onChange, loadOpti
         }
     }, [defaultValue, loadOptions]);
     return (
-        <AsyncSelect
-            loadOptions={loadOptions}
-            placeholder={placeholder}
-            className='w-full select'
-            required
-            defaultOptions
-            styles={{
-                control: (base, state) => ({
-                    ...base,
-                    borderColor: state.isFocused ? '#1e003f' : '',
-                    boxShadow: state.isFocused ? 'none' : 'none',
-                    borderRadius: '12px',
-                    padding: '8px 16px 8px 16px',
-                    '&:hover': {
-                        borderColor: state.isFocused ? '#1e003f' : '#b2b2b2',
-                    },
-                }),
-                menuPortal: (provided) => ({ ...provided, zIndex: 99999 }),
-                menu: (provided) => ({ ...provided, zIndex: 99999 }),
-            }}
-            onChange={onChange}
-            menuPortalTarget={document.body}
-            components={{ Option: customOption }}
-            {...(initialOption ? { value: initialOption } : {})}
-        />
+        <div className='formInput flex flex-col gap-2'>
+            <AsyncSelect
+                name={name}
+                loadOptions={loadOptions}
+                placeholder={placeholder}
+                className='w-full select'
+                defaultOptions
+                styles={{
+                    control: (base, state) => ({
+                        ...base,
+                        borderColor: state.isFocused ? '#1e003f' : '',
+                        boxShadow: state.isFocused ? 'none' : 'none',
+                        borderRadius: '12px',
+                        padding: '8px 16px 8px 16px',
+                        '&:hover': {
+                            borderColor: state.isFocused ? '#1e003f' : '#b2b2b2',
+                        },
+                    }),
+                    menuPortal: (provided) => ({ ...provided, zIndex: 99999 }),
+                    menu: (provided) => ({ ...provided, zIndex: 99999 }),
+                }}
+                onChange={onChange}
+                menuPortalTarget={document.body}
+                components={{ Option: customOption }}
+                {...(initialOption ? { value: initialOption } : {})}
+            />
+            {hasError && (
+                <span className='text-red-600'>
+                    <FontAwesomeIcon icon={faTriangleExclamation} className='mr-2' /> {errorMessages}
+                </span>
+            )}
+        </div>
     );
 };
 

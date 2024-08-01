@@ -3,7 +3,7 @@ import FooterTop from './FooterTop';
 import FooterBottom from './FooterBottom';
 const Footer: React.FC = () => {
     return (
-        <footer className='bg-primary text-white py-4 px-3 md:px-0'>
+        <footer className='bg-primary text-white py-4 px-3 md:px-0 mt-auto'>
             <FooterTop />
             <FooterBottom />
         </footer>

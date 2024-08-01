@@ -1,10 +1,11 @@
-import React, { createContext, useContext, ReactNode, useState, useCallback } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import useLocalStorage from '../hooks/useLocaleStorage';
 
 interface UserContextType {
     getUser: () => User | null;
-    removeUser: () => void;
-    setToken: (newToken: string | null) => void;
+    removeToken: () => void;
+    setToken: (newToken: string) => void;
 }
 
 interface User {
@@ -28,20 +29,11 @@ interface UserProviderProps {
 }
 
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const [token, setTokenState] = useState<string | null>(localStorage.getItem('token'));
+    const [token, setToken] = useLocalStorage('token');
 
-    const setToken = useCallback((newToken: string | null) => {
-        setTokenState(newToken);
-        if (newToken) {
-            localStorage.setItem('token', newToken);
-        } else {
-            localStorage.removeItem('token');
-        }
-    }, []);
-
-    const removeUser = useCallback(() => {
+    const removeToken = () => {
         setToken(null);
-    }, [setToken]);
+    };
 
     const getUser = (): User | null => {
         if (token) {
@@ -53,7 +45,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     const contextValue = {
         getUser,
-        removeUser,
+        removeToken,
         setToken,
     };
 

@@ -12,12 +12,12 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ email, role }) => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
-    const { removeUser } = useUser();
+    const { removeToken } = useUser();
 
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are you sure you want to log out?');
         if (confirmLogout) {
-            removeUser();
+            removeToken();
             navigate('/');
         }
     };
@@ -65,15 +65,15 @@ const Avatar: React.FC<AvatarProps> = ({ email, role }) => {
                         </li>
                         {role === 'EMPLOYER' ? (
                             <li className='link'>
-                                <a className='dropdown-item' href='/employer/jobs'>
+                                <Link className='dropdown-item' to='/employer/jobs'>
                                     My Jobs
-                                </a>
+                                </Link>
                             </li>
                         ) : (
                             <li className='link'>
-                                <a className='dropdown-item' href='/employer/applications'>
+                                <Link className='dropdown-item' to='/employer/applications'>
                                     My Application
-                                </a>
+                                </Link>
                             </li>
                         )}
                         <li>

@@ -33,11 +33,7 @@ const EmployerProfile: React.FC = () => {
         <div>
             <PageBanner title={employer ? employer.name : 'Employer'} breadcrumbs={breadcrumbs} />
             <div className='flex flex-col my-5 justify-center items-center'>
-                {loading && (
-                    <div className='h-48 flex justify-center items-center'>
-                        <Loading />
-                    </div>
-                )}
+                {loading && <Loading className='!h-28' />}
                 {error && (
                     <div className='flex flex-col w-content gap-4 items-center justify-center'>
                         <p className='text-red-500'>Error: {error}</p>

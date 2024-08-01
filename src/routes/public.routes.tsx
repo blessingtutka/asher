@@ -5,7 +5,6 @@ import JobDetailPage from '../pages/details/JobDetailPage';
 import EmployerDetailPage from '../pages/details/EmployerDetailPage';
 import WorkerDetailPage from '../pages/details/WorkerDetailPage';
 import ApplyPage from '../pages/ApplyPage';
-import JobPost from '../pages/create/JobPostPage';
 import ServerPage from '../pages/ServerResponsePage';
 
 const publicRoutes = [
@@ -15,8 +14,7 @@ const publicRoutes = [
     { path: 'job/:jobId', element: <JobDetailPage /> },
     { path: 'worker/:workerId', element: <WorkerDetailPage /> },
     { path: 'employer/:empId', element: <EmployerDetailPage /> },
-    { path: 'apply/:jobTitle', element: <ApplyPage /> },
-    { path: 'job/post', element: <JobPost /> },
+    { path: 'apply/:jobTitle/:jobId', element: <ApplyPage /> },
     { path: 'server', element: <ServerPage /> },
 ];
 

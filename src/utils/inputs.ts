@@ -5,12 +5,11 @@ import {
     faUser,
     faIdCard,
     faBriefcase,
-    faBuilding,
     faMapLocationDot,
     faStopwatch,
     faMoneyCheckDollar,
     faCircleInfo,
-    faListCheck,
+    faUnlock,
     faHourglassStart,
     faHourglassHalf,
     faBookReader,
@@ -21,6 +20,8 @@ import {
     faUserTie,
     faUserCheck,
     faLayerGroup,
+    faFileContract,
+    faPersonCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import jobCategory from './jobCategory';
 
@@ -39,8 +40,11 @@ const UserTypeLoadOptions = async (inputValue: string) => {
 const jobTypeLoadOptions = async (inputValue: string) => {
     try {
         const jobTypeOptions = [
-            { value: 'Full Time', label: 'Full Time', icon: faHourglassStart },
-            { value: 'Part Time', label: 'Part Time', icon: faHourglassHalf },
+            { value: 'FULL_TIME', label: 'Full Time', icon: faHourglassStart },
+            { value: 'PART_TIME', label: 'Part Time', icon: faHourglassHalf },
+            { value: 'CONTRACT', label: 'Contract', icon: faFileContract },
+            { value: 'TEMPORARY', label: 'Temporary', icon: faStopwatch },
+            { value: 'INTERN', label: 'Intern', icon: faPersonCircleCheck },
         ].filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
         return jobTypeOptions;
     } catch (e) {
@@ -51,6 +55,18 @@ const jobCategoryLoadOptions = async (inputValue: string) => {
     try {
         const jobCategoryOptions = jobCategory.filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
         return jobCategoryOptions;
+    } catch (e) {
+        return [];
+    }
+};
+
+const jobStatusLoadOptions = async (inputValue: string) => {
+    try {
+        const userTypeOptions = [
+            { value: 'OPEN', label: 'Open', icon: faUnlock },
+            { value: 'CLOSE', label: 'Close', icon: faLock },
+        ].filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
+        return userTypeOptions;
     } catch (e) {
         return [];
     }
@@ -101,9 +117,10 @@ const applyInputs = [
 ];
 // ADD JOB (JOB POST)
 const jobPostInputs = [
-    { label: 'Job Title', type: 'text', placeholder: 'Software Engineer', name: 'jobTitle', required: true, icon: faBriefcase },
-    { label: 'Company Name', type: 'text', placeholder: 'Tech Corp', name: 'companyName', required: true, icon: faBuilding },
-    { label: 'Location', type: 'text', placeholder: 'New York, NY', name: 'location', required: true, icon: faMapLocationDot },
+    { label: 'Job Title', type: 'text', placeholder: 'Software Engineer', name: 'title', required: true, icon: faBriefcase },
+    { label: 'Location', type: 'text', placeholder: 'New York, NY', name: 'location', icon: faMapLocationDot },
+    { label: 'Salary', type: 'text', placeholder: '$70,000', name: 'salary', icon: faMoneyCheckDollar },
+    { label: 'Job Description', type: 'textarea', placeholder: 'Job description...', name: 'description', icon: faCircleInfo },
     {
         label: 'Job Category',
         type: 'select',
@@ -118,13 +135,17 @@ const jobPostInputs = [
         type: 'select',
         placeholder: 'Select job type ...',
         name: 'jobType',
-        required: true,
         icon: faStopwatch,
         options: jobTypeLoadOptions,
     },
-    { label: 'Salary', type: 'text', placeholder: '$70,000', name: 'salary', required: true, icon: faMoneyCheckDollar },
-    { label: 'Job Description', type: 'textarea', placeholder: 'Job description...', name: 'jobDescription', required: true, icon: faCircleInfo },
-    { label: 'Requirements', type: 'textarea', placeholder: 'Requirements...', name: 'requirements', required: true, icon: faListCheck },
+    {
+        label: 'Job Status',
+        type: 'select',
+        placeholder: 'Select job status ...',
+        name: 'status',
+        icon: faStopwatch,
+        options: jobStatusLoadOptions,
+    },
 ];
 
 // ADD WORKER INFO

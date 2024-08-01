@@ -2,9 +2,9 @@ import Form from '../Common/Form';
 import { FieldValues } from 'react-hook-form';
 import { applyInputs } from '../../utils/inputs';
 
-const ApplyForm = () => {
+const ApplyForm = ({ jobId }: { jobId?: string }) => {
     const handleSubmit = (data: FieldValues) => {
-        console.log(data);
+        console.log(data, jobId);
     };
 
     return (

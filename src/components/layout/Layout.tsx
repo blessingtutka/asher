@@ -8,7 +8,7 @@ import { ScrollRestoration } from 'react-router-dom';
 const Layout = () => {
     const { modalOpen } = useApp();
     return (
-        <div>
+        <div className='wraper min-h-lvh flex flex-col'>
             <Header />
             <main className='w-full'>
                 <ScrollRestoration />

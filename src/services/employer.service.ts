@@ -16,7 +16,7 @@ interface ApiResponse<T> {
 // Services
 export const getEmployerProfile = async (empId: string): Promise<ApiResponse<Employer>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Employer>> = await axios.get(`/employer/${empId}`);
+        const response: AxiosResponse<ApiResponse<Employer>> = await axios.get(`/employer/profile/${empId}`);
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error fetching employer profile');

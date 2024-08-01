@@ -20,7 +20,7 @@ export default function Login() {
     const navigate = useNavigate();
     const { setModalOpen } = useApp();
     const { switchToSignup, switchToRest } = useAuth();
-    const { setToken, removeUser } = useUser();
+    const { setToken, removeToken } = useUser();
     const [loading, setLoading] = useState(false);
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -38,7 +38,7 @@ export default function Login() {
             setModalOpen(false);
             notify.success('Login Successfully');
         } catch (error: any) {
-            removeUser();
+            removeToken();
             notify.error(error.message || 'Login failed');
         } finally {
             setLoading(false);

@@ -1,4 +1,4 @@
-const validation = (input: { type: string; label: string; required?: boolean }) => ({
+const validation = (input: { type: string; name: string; label: string; required?: boolean }) => ({
     required: input.required ? `${input.label} is required` : undefined,
     pattern:
         input.type === 'email'
@@ -14,6 +14,7 @@ const validation = (input: { type: string; label: string; required?: boolean }) 
                   message: 'Password must be at least 4 characters',
               }
             : undefined,
+    validate: input.name === 'salary' ? (value: string) => !isNaN(Number(value)) || 'Salary must be a number' : undefined,
 });
 
 export default validation;

@@ -19,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = () => {
     };
 
     return (
-        <div className='col-12 flex justify-end'>
+        <div className='flex'>
             <form onSubmit={handleSubmit(onSubmit)} className='w-fit flex gap-2 border border-gray-300 rounded p-1 *:text-sm'>
                 <input type='text' placeholder='Search...' {...register('query')} className='search-input p-1' />
                 <select {...register('category')} className='search-select p-1 border-l border-gray-300  '>

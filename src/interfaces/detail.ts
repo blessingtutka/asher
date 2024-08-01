@@ -1,13 +1,16 @@
 export interface Job {
-    image?: string;
-    logo?: string;
+    id: string;
     title: string;
-    description: string;
-    location: string;
-    salary: string;
-    experience: string;
-    company: string;
-    phone: string;
+    image?: string;
+    description?: string;
+    location?: string;
+    salary?: number;
+    status?: string;
+    jobCategory?: string;
+    jobType?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    employer?: { id?: string; profile?: string; name?: string; telephone?: string };
 }
 
 export interface Worker {

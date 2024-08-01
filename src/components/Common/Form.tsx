@@ -4,18 +4,15 @@ import { useForm, SubmitHandler, Controller, FieldValues } from 'react-hook-form
 import UploadField from './UploadField';
 import DataSelect from './DataSelect';
 import Loading from './Loading';
+
 interface FormProps {
     inputs: FormInputData[];
-    handleOnSubmit: SubmitHandler<any>;
+    handleOnSubmit: SubmitHandler<FieldValues>;
     loading?: boolean;
-    initialValues?: InitialValues;
+    initialValues?: FieldValues;
 }
 
-interface InitialValues {
-    [key: string]: any;
-}
-
-const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {}, loading = false }) => {
+const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, loading = false }) => {
     const {
         register,
         handleSubmit,
@@ -23,13 +20,18 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {},
         control,
         setValue,
         reset,
-    } = useForm();
+    } = useForm({
+        defaultValues: initialValues || {},
+    });
 
     useEffect(() => {
-        reset(initialValues);
+        if (initialValues) {
+            reset(initialValues);
+        }
     }, [initialValues, reset]);
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        console.log(data);
         handleOnSubmit(data);
         reset();
     };
@@ -39,7 +41,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {},
             <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-4'>
                 <div className='w-full flex flex-col gap-4'>
                     {inputs.map((input, index) => {
-                        if (input.type == 'file') {
+                        if (input.type === 'file') {
                             return (
                                 <Controller
                                     key={index}
@@ -57,7 +59,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {},
                                 />
                             );
                         }
-                        if (input.type == 'select') {
+                        if (input.type === 'select') {
                             return (
                                 <div key={index} className='formInput flex flex-col gap-2'>
                                     <label htmlFor={`InputSelect`}>
@@ -68,13 +70,15 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues = {},
                                         name={input.name}
                                         control={control}
                                         rules={{ required: input.required ? 'Required' : false }}
-                                        render={({ field }) => (
+                                        render={({ field: { ref, ...field } }) => (
                                             <DataSelect
                                                 {...field}
-                                                defaultValue={initialValues[input.name]}
+                                                name={input.name}
+                                                errors={errors}
+                                                defaultValue={initialValues?.[input.name]}
                                                 loadOptions={input?.options || (() => Promise.resolve([]))}
                                                 placeholder={input.placeholder}
-                                                onChange={(selectedOption) => field.onChange(selectedOption)}
+                                                onChange={(e: any) => field.onChange(e.value)}
                                             />
                                         )}
                                     />

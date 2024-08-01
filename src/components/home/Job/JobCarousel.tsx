@@ -1,9 +1,14 @@
+import { useState, useEffect } from 'react';
 import JobCard from './JobCard';
 import { Carousel } from '../../Common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import imgP from '../../../assets/images/about-2.jpg';
-import logo from '../../../assets/images/employer-logo.png';
+import { getAllJobs } from '../../../services/job.service';
+import { Job } from '../../../interfaces/detail';
+import Loading from '../../../components/Common/Loading';
+import Error from '../../../components/Common/Error';
+import Empty from '../../../components/Common/Empty';
+
 const JobNavigation = () => (
     <div className='absolute top-0 right-[30%] md:right-5 flex gap-3'>
         <div className='swiper-button-job swiper-button-prev'>
@@ -17,59 +22,33 @@ const JobNavigation = () => (
 
 const renderItem = ({ item, index }: { item: any; index: number }) => <JobCard key={index} item={item} />;
 
-const jobs = [
-    {
-        companyName: 'Company A',
-        jobTitle: 'Software Engineer',
-        salary: '$120,000',
-        location: 'New York, NY',
-        imageSrc: imgP,
-        logo: logo,
-    },
-    {
-        companyName: 'Company B',
-        jobTitle: 'Data Scientist',
-        salary: '$110,000',
-        location: 'San Francisco, CA',
-        imageSrc: imgP,
-        logo: logo,
-    },
-    {
-        companyName: 'Company C',
-        jobTitle: 'Product Manager',
-        salary: '$130,000',
-        location: 'Boston, MA',
-        imageSrc: imgP,
-        logo: logo,
-    },
-    {
-        companyName: 'Company D',
-        jobTitle: 'UX Designer',
-        salary: '$90,000',
-        location: 'Austin, TX',
-        imageSrc: imgP,
-        logo: logo,
-    },
-    {
-        companyName: 'Company E',
-        jobTitle: 'DevOps Engineer',
-        salary: '$115,000',
-        location: 'Seattle, WA',
-        imageSrc: imgP,
-        logo: logo,
-    },
-    {
-        companyName: 'Company E',
-        jobTitle: 'DevOps Engineer',
-        salary: '$115,000',
-        location: 'Seattle, WA',
-        imageSrc: imgP,
-        logo: logo,
-    },
-];
-
 export default function JobCarousel() {
-    return (
+    const [jobs, setJobs] = useState<Job[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchEmployerJobs = async () => {
+            try {
+                const response = await getAllJobs();
+                setJobs(response.data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEmployerJobs();
+    }, []);
+
+    return loading ? (
+        <Loading className='!h-12' />
+    ) : error ? (
+        <Error message={error} />
+    ) : jobs.length === 0 ? (
+        <Empty message='No posted job yet' />
+    ) : (
         <Carousel
             slidesPerView={'auto'}
             spaceBetween={30}

@@ -47,12 +47,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ role, element }) => {
 
     if (!user || !user.token) {
         setModalOpen(true);
+        navigate('/');
         notify.warning('You are not logged in');
         return null;
     }
 
     if (user.role !== role) {
         setModalOpen(true);
+        navigate('/');
         notify.error("You can't access this page");
         return null;
     }

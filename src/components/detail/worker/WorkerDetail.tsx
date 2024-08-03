@@ -1,7 +1,5 @@
 import React from 'react';
-import WorkerSkill from './WorkerSkills';
 import WorkerInfo from './WorkerInfo';
-import WorkerExperience from './WorkerExperience';
 import { Worker } from '../../../interfaces/detail';
 
 interface WorkerDetailProps {
@@ -10,10 +8,9 @@ interface WorkerDetailProps {
 
 const WorkerDetail: React.FC<WorkerDetailProps> = ({ worker }) => {
     return (
-        <div className='detail worker-detail w-content text-content'>
+        <div className='detail worker-detail w-full text-content'>
             <WorkerInfo worker={worker} />
-            {worker.personalExperience && <WorkerExperience personalExperience={worker.personalExperience} />}
-            <WorkerSkill skills={worker.skills} />
+            {/* <WorkerSkill skills={worker.skills} /> */}
         </div>
     );
 };

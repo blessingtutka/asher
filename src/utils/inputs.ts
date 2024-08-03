@@ -152,13 +152,14 @@ const jobPostInputs = [
 
 // ADD WORKER INFO
 const workerInputs = [
-    { label: 'First Name', type: 'text', placeholder: 'Asher', name: 'firstname', required: true, icon: faClipboardUser },
-    { label: 'Last Name', type: 'text', placeholder: 'Warden', name: 'lastname', required: true, icon: faClipboardUser },
+    { label: 'First Name', type: 'text', placeholder: 'Asher', name: 'firstName', icon: faClipboardUser },
+    { label: 'Last Name', type: 'text', placeholder: 'Warden', name: 'lastName', required: true, icon: faClipboardUser },
+    { label: 'Title', type: 'text', placeholder: 'Software Engineer', name: 'title', icon: faClipboardUser },
     { label: 'Bio', type: 'textarea', placeholder: 'Tell us about yourself...', name: 'bio', icon: faBookReader },
-    { label: 'Upload CV', type: 'file', placeholder: 'asher-cv.pdf', name: 'cv', required: true },
-    { label: 'Activity', type: 'text', placeholder: 'Software Development', name: 'activity', required: true, icon: faUserGear },
-    { label: 'Address', type: 'text', placeholder: '123 Main St, New York, NY', name: 'address', required: true, icon: faMapLocationDot },
-    { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', required: true, icon: faSquarePhone },
+    { label: 'Upload CV', type: 'file', placeholder: 'asher-cv.pdf', name: 'cv' },
+    { label: 'Activity', type: 'text', placeholder: 'Software Development', name: 'activity', icon: faUserGear },
+    { label: 'Address', type: 'text', placeholder: '123 Main St, New York, NY', name: 'address', icon: faMapLocationDot },
+    { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', icon: faSquarePhone },
 ];
 
 // ADD EMPLOYEE INFO

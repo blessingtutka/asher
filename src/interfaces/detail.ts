@@ -14,16 +14,16 @@ export interface Job {
 }
 
 export interface Worker {
-    image?: string;
-    fullName: string;
-    title: string;
-    description?: string;
-    experience?: string;
-    responsibility?: string;
-    email: string;
-    phone: string;
-    personalExperience?: string;
-    skills: Skill[];
+    profile?: string;
+    firstName?: string;
+    lastName?: string;
+    bio?: string;
+    title?: string;
+    cvFile?: string;
+    activity?: string;
+    address?: string;
+    telephone?: string;
+    user?: { email?: string };
 }
 
 export interface Employer {

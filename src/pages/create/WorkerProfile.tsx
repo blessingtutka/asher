@@ -1,6 +1,6 @@
 import WorkerForm from '../../components/form/WorkerForm';
 import PageBanner from '../../components/Common/PageBanner';
-export default function WorkerProfile() {
+export default function WorkerProfileSetting() {
     const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'profile' }];
     return (
         <div>

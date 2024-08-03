@@ -26,19 +26,16 @@ export const exampleEmployer: Employer = {
 };
 
 export const exampleWorker: Worker = {
-    image: workerImage,
-    fullName: 'John Doe',
-    title: 'Senior Developer',
-    description: `Eros justo, posuere loborti viverra laoreet matti ullamcorper posuere viverra.
-        Aliquam eros justo, posuere lobortis, viverra laoreet augue mattis fermentum ullamcorper viverra laoreet Aliquam eros justo, posuere loborti viverra laoreet matti ullamcorper posuere`,
-    responsibility: 'System Design',
-    experience: '10 years +',
-    email: 'john.doe@example.com',
-    phone: '(907) 555-0101',
-    personalExperience: 'IELTS score is internationally recognized...',
-    skills: [
-        { name: 'Developing Process', percentage: 70 },
-        { name: 'Power Design', percentage: 60 },
-        { name: 'Comfort Functionality', percentage: 50 },
-    ],
+    profile: 'https://example.com/worker-profile.jpg',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    bio: 'An experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success.',
+    title: 'Software Engineer',
+    cvFile: 'https://example.com/jane-doe-cv.pdf',
+    activity: 'Full-Stack Development',
+    address: '5678 Developer Lane, Code City, CA 90002',
+    telephone: '+1-987-654-3210',
+    user: {
+        email: 'jane.doe@example.com',
+    },
 };

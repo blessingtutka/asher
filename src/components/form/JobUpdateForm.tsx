@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { jobPostInputs } from '../../utils/inputs';
@@ -10,6 +10,7 @@ import notify from '../../utils/notificationService';
 
 const JobUpdateForm = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [job, setJob] = useState<Job | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -36,7 +37,9 @@ const JobUpdateForm = () => {
     const handleSubmit = async (data: FieldValues) => {
         setLoading(true);
         try {
-            await updateJob(id, data);
+            const { posterId, employer, ...sended } = data;
+            await updateJob(id, sended);
+            navigate('/employer/jobs');
             notify.success('Job updated successfully!');
         } catch (error: any) {
             notify.error(`Error updating job: ${error.response?.data?.message || 'An error occurred.'}`);

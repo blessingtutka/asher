@@ -58,7 +58,6 @@ export default function JobCarousel() {
             renderItem={renderItem}
             className='job-slider'
             navigationComponent={<JobNavigation />}
-            slideToClickedSlide={true}
         />
     );
 }

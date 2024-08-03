@@ -51,6 +51,7 @@ const jobTypeLoadOptions = async (inputValue: string) => {
         return [];
     }
 };
+
 const jobCategoryLoadOptions = async (inputValue: string) => {
     try {
         const jobCategoryOptions = jobCategory.filter((e) => e.label.toLowerCase().includes(inputValue.toLowerCase()));
@@ -118,9 +119,10 @@ const applyInputs = [
 // ADD JOB (JOB POST)
 const jobPostInputs = [
     { label: 'Job Title', type: 'text', placeholder: 'Software Engineer', name: 'title', required: true, icon: faBriefcase },
+    { label: 'Job Image', type: 'image', placeholder: 'job-image.jpg', name: 'image', icon: faBriefcase },
     { label: 'Location', type: 'text', placeholder: 'New York, NY', name: 'location', icon: faMapLocationDot },
     { label: 'Salary', type: 'text', placeholder: '$70,000', name: 'salary', icon: faMoneyCheckDollar },
-    { label: 'Job Description', type: 'textarea', placeholder: 'Job description...', name: 'description', icon: faCircleInfo },
+    { label: 'Job Description', type: 'editor', placeholder: 'Job description...', name: 'description', icon: faCircleInfo },
     {
         label: 'Job Category',
         type: 'select',
@@ -162,10 +164,10 @@ const workerInputs = [
 // ADD EMPLOYEE INFO
 const employerInputs = [
     { label: 'Name', type: 'text', placeholder: 'Tech Corp', name: 'name', required: true, icon: faUser },
-    { label: 'Company Logo', type: 'file', placeholder: 'company-logo.png', name: 'profile' },
-    { label: 'Description', type: 'textarea', placeholder: 'Describe your company...', name: 'description', icon: faCircleInfo },
-    { label: 'Type', type: 'select', placeholder: 'Industry Type', name: 'type', options: EmployerTypeLoadOptions, icon: faUser },
+    { label: 'Company Logo', type: 'image', placeholder: 'company-logo.png', name: 'profile' },
     { label: 'Bio', type: 'textarea', placeholder: 'Company bio...', name: 'bio', icon: faBookReader },
+    { label: 'Description', type: 'editor', placeholder: 'Describe your company...', name: 'description', icon: faCircleInfo },
+    { label: 'Type', type: 'select', placeholder: 'Industry Type', name: 'type', options: EmployerTypeLoadOptions, icon: faUser },
     { label: 'Activity', type: 'text', placeholder: 'Field of Activity', name: 'activity', icon: faUsersGear },
     { label: 'Address', type: 'text', placeholder: '123 Corporate St, New York, NY', name: 'address', icon: faMapLocationDot },
     { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', icon: faSquarePhone },

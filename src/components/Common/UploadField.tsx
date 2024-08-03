@@ -1,4 +1,3 @@
-// src/components/UploadField.tsx
 import React, { useState } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
@@ -11,9 +10,10 @@ interface UploadFieldProps {
     setValue: UseFormSetValue<any>;
     placeholder?: string;
     error?: string;
+    type?: string;
 }
 
-const UploadField: React.FC<UploadFieldProps> = ({ name, setValue, placeholder, error }) => {
+const UploadField: React.FC<UploadFieldProps> = ({ name, setValue, placeholder, error, type }) => {
     const [fileName, setFileName] = useState<string | null>(null);
 
     const onDrop = (acceptedFiles: File[]) => {
@@ -24,11 +24,14 @@ const UploadField: React.FC<UploadFieldProps> = ({ name, setValue, placeholder, 
 
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
-        accept: {
-            'application/pdf': ['.pdf'],
-            'application/msword': ['.doc'],
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
-        },
+        accept:
+            type === 'image'
+                ? { 'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp'] }
+                : {
+                      'application/pdf': ['.pdf'],
+                      'application/msword': ['.doc'],
+                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+                  },
         maxFiles: 1,
     });
 

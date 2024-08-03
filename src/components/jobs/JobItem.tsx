@@ -41,7 +41,7 @@ const JobItem: React.FC<JobProps> = ({ job }) => {
 
     return (
         <div className='col-12 md:col-6'>
-            <div className='w-full mb-4 border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between'>
+            <div className='w-full h-full mb-4 border border-gray-300 rounded-lg overflow-hidden flex flex-col'>
                 <div className='relative w-full flex flex-col h-52 p-4 bg-gray-200'>
                     {isUserEmployer && (
                         <Link to={`/job/update/${job.id}`} className='actions bg-slate-300 rounded-md p-1 absolute z-10 top-2 right-2 text-xs'>
@@ -78,9 +78,9 @@ const JobItem: React.FC<JobProps> = ({ job }) => {
                         </div>
                         {job.createdAt && <span className='w-fit text-sm p-1 rounded-md text-gray-500'>{formatDate(job.createdAt)}</span>}
                     </Link>
-                    {job.description && <p className='text-gray-500 text-sm'>{truncater(job.description, 200)}</p>}
+                    {job.description && <div className='editors' dangerouslySetInnerHTML={{ __html: truncater(job.description, 100) }} />}
                 </div>
-                <div className='flex justify-between items-center p-4'>
+                <div className='flex justify-between mt-auto items-center p-4'>
                     <div className='text-lg text-primary'>${job.salary ? job.salary : 'N/A'}</div>
                     <button onClick={handleClick} className='main-btn'>
                         Apply Now

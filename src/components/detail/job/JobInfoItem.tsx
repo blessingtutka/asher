@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CheckIcon } from '../../../assets/images/icons';
 
 interface JobInfoItemProps {
     label: string;
     value?: string | number;
+    link?: string;
 }
 
-const JobInfoItem: React.FC<JobInfoItemProps> = ({ label, value }) => {
+const JobInfoItem: React.FC<JobInfoItemProps> = ({ label, value, link }) => {
     return (
         <>
             {value && (
@@ -15,7 +17,7 @@ const JobInfoItem: React.FC<JobInfoItemProps> = ({ label, value }) => {
                         <CheckIcon />
                         {label}
                     </b>
-                    <span>{value}</span>
+                    <span>{link ? <Link to={link}>{value}</Link> : <>{value}</>}</span>
                 </div>
             )}
         </>

@@ -27,7 +27,7 @@ const EmployerProfile: React.FC = () => {
         fetchEmployerProfile();
     }, []);
 
-    const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Jobs', href: '/jobs' }, { label: 'Employer' }, { label: 'Profile' }];
+    const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Employer' }, { label: 'Profile' }];
 
     return (
         <div>

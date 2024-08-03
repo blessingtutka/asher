@@ -6,6 +6,7 @@ import { ActionMeta, OnChangeValue } from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { formatString } from '../../utils/stringFormater';
 
 export interface OptionType {
     label: string;
@@ -33,10 +34,11 @@ const DataSelect: React.FC<DataSelectProps> = ({ placeholder, name, onChange, lo
     const [initialOption, setInitialOption] = useState<OptionType | null>(null);
     const errorMessages = errors && (errors[name]?.message as string);
     const hasError = !!errorMessages;
+
     useEffect(() => {
         if (defaultValue) {
-            loadOptions(defaultValue).then((options) => {
-                const option = options.find((opt) => opt.value === defaultValue);
+            loadOptions(formatString(defaultValue)).then((options) => {
+                const option = options.find((opt) => opt.value == defaultValue);
                 setInitialOption(option || null);
             });
         }

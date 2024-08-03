@@ -8,7 +8,7 @@ const EmployerDecription: React.FC<EmployerDecriptionProps> = ({ employerDescrit
     return (
         <div className='mt-5'>
             <h2 className='text-2xl font-bold text-primary mb-2'>Description</h2>
-            <p className='mb-4'>{employerDescritpion}</p>
+            {employerDescritpion && <div className='editors' dangerouslySetInnerHTML={{ __html: employerDescritpion }} />}
         </div>
     );
 };

@@ -70,7 +70,6 @@ const Carousel: React.FC<CarouselProps> = ({
                 mousewheel={{ thresholdDelta: 70 }}
                 navigation={navigation}
                 className={`${className}`}
-                initialSlide={4}
                 {...otherProps}
             >
                 {data.map((item, index) => {

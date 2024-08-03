@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Job } from '../../../interfaces/detail';
 import { useSwiperSlide } from 'swiper/react';
-import { useNavigate } from 'react-router-dom';
 import JobImage from '../../../assets/images/about-2.jpg';
 import logo from '../../../assets/images/employer-logo.png';
 interface JobCardProps {
@@ -12,11 +11,7 @@ interface JobCardProps {
 
 const JobCard: React.FC<JobCardProps> = ({ item }) => {
     const swiperSlide = useSwiperSlide();
-    const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate(`/apply/${item.title}/${item.id}`);
-    };
     const [active, setActive] = useState(swiperSlide.isNext);
 
     useEffect(() => {
@@ -56,9 +51,9 @@ const JobCard: React.FC<JobCardProps> = ({ item }) => {
                     </Link>
                     <p className='mt-2'>${item.salary}</p>
                     <p>{item.location}</p>
-                    <button onClick={handleClick} className='apply-btn'>
+                    <Link to={`/apply/${item.title}/${item.id}`} className='apply-btn relative z-10'>
                         Apply Now &rarr;
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

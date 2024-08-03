@@ -1,9 +1,11 @@
+// src/components/Form.tsx
 import React, { useEffect } from 'react';
-import FormInput, { FormInputData } from '../Common/Input';
 import { useForm, SubmitHandler, Controller, FieldValues } from 'react-hook-form';
+import FormInput, { FormInputData } from '../Common/Input';
 import UploadField from './UploadField';
 import DataSelect from './DataSelect';
 import Loading from './Loading';
+import Editor from './Editor';
 
 interface FormProps {
     inputs: FormInputData[];
@@ -31,7 +33,6 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, load
     }, [initialValues, reset]);
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data);
         handleOnSubmit(data);
         reset();
     };
@@ -41,22 +42,29 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, load
             <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-4'>
                 <div className='w-full flex flex-col gap-4'>
                     {inputs.map((input, index) => {
-                        if (input.type === 'file') {
+                        if (input.type === 'file' || input.type === 'image') {
                             return (
-                                <Controller
-                                    key={index}
-                                    name={input.name}
-                                    control={control}
-                                    rules={{ required: input.required ? 'File is required' : false }}
-                                    render={({ field }) => (
-                                        <UploadField
-                                            name={field.name}
-                                            setValue={setValue}
-                                            placeholder={input.placeholder}
-                                            error={errors[input.name]?.message as string}
-                                        />
-                                    )}
-                                />
+                                <div key={index} className='formInput flex flex-col gap-2'>
+                                    <label htmlFor={`InputSelect`}>
+                                        <b>{input.label}</b>
+                                        {input.required && <span className='text-red-600'>*</span>}
+                                    </label>
+                                    <Controller
+                                        key={index}
+                                        name={input.name}
+                                        control={control}
+                                        rules={{ required: input.required ? 'File is required' : false }}
+                                        render={({ field }) => (
+                                            <UploadField
+                                                type={input.type}
+                                                name={field.name}
+                                                setValue={setValue}
+                                                placeholder={input.placeholder}
+                                                error={errors[input.name]?.message as string}
+                                            />
+                                        )}
+                                    />
+                                </div>
                             );
                         }
                         if (input.type === 'select') {
@@ -64,7 +72,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, load
                                 <div key={index} className='formInput flex flex-col gap-2'>
                                     <label htmlFor={`InputSelect`}>
                                         <b>{input.label}</b>
-                                        {input.required && <span className=' text-red-600'>*</span>}
+                                        {input.required && <span className='text-red-600'>*</span>}
                                     </label>
                                     <Controller
                                         name={input.name}
@@ -81,6 +89,22 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, load
                                                 onChange={(e: any) => field.onChange(e.value)}
                                             />
                                         )}
+                                    />
+                                </div>
+                            );
+                        }
+                        if (input.type === 'editor') {
+                            return (
+                                <div key={index} className='formInput flex flex-col gap-2'>
+                                    <label htmlFor={`Editor`}>
+                                        <b>{input.label}</b>
+                                        {input.required && <span className='text-red-600'>*</span>}
+                                    </label>
+                                    <Controller
+                                        name={input.name}
+                                        control={control}
+                                        rules={{ required: input.required ? 'Content is required' : false }}
+                                        render={({ field: { value, onChange } }) => <Editor value={value} onChange={onChange} />}
                                     />
                                 </div>
                             );

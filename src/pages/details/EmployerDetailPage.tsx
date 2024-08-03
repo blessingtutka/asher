@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getEmployerProfile } from '../../services/employer.service';
 import { Employer } from '../../interfaces/detail';
+import { exampleEmployer } from '../../components/detail/data';
 import Error from '../../components/Common/Error';
 import Loading from '../../components/Common/Loading';
 import PageBanner from '../../components/Common/PageBanner';
@@ -21,6 +22,7 @@ const EmployerDetailPage: React.FC = () => {
         const fetchEmployerProfile = async () => {
             try {
                 const response = await getEmployerProfile(empId);
+                setError('');
                 setEmployer(response.data);
             } catch (err: any) {
                 setError(err.message);
@@ -37,12 +39,19 @@ const EmployerDetailPage: React.FC = () => {
         <div>
             <PageBanner title={employer?.name ? employer?.name : 'Employer'} breadcrumbs={breadcrumbs} />
             {loading && <Loading className='!h-16' />}
-            {error && <Error message='Error getting Employer Detail' />}
-            {employer && (
-                <div className='flex flex-col my-5 justify-center items-center'>
-                    <EmployerDetail employer={employer} className='!w-content' />
-                </div>
-            )}
+            <div className='flex flex-col w-full my-5 gap-4 items-center justify-center'>
+                {error && (
+                    <div className='flex flex-col w-content my-5 gap-4 items-center justify-center'>
+                        <p className='text-red-500'>Error: {error}</p>
+                        <EmployerDetail employer={exampleEmployer} />
+                    </div>
+                )}
+                {employer && (
+                    <div className='flex flex-col w-content my-5 justify-center items-center'>
+                        <EmployerDetail employer={employer} />
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

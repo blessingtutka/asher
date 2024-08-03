@@ -5,12 +5,11 @@ import { Employer } from '../../../interfaces/detail';
 
 interface employerDetailProps {
     employer: Employer;
-    className?: string;
 }
 
-const EmployerDetail: React.FC<employerDetailProps> = ({ employer, className }) => {
+const EmployerDetail: React.FC<employerDetailProps> = ({ employer }) => {
     return (
-        <div className={'detail w-full worker-detail text-content ' + className}>
+        <div className={'detail w-full worker-detail text-content'}>
             <EmployerInfo employer={employer} />
             {employer.description && <EmployerDecription employerDescritpion={employer.description} />}
         </div>

@@ -1,4 +1,4 @@
-import { Job, Worker, Employer } from '../../interfaces/detail';
+import { Job, Worker, Employer, Application } from '../../interfaces/detail';
 import workerImage from '../../assets/images/about-1.jpg';
 import jobImage from '../../assets/images/about-1.jpg';
 export const exampleJob: Job = {
@@ -39,3 +39,46 @@ export const exampleWorker: Worker = {
         email: 'jane.doe@example.com',
     },
 };
+
+export const applications: Application[] = [
+    {
+        id: '1',
+        jobId: 'job123',
+        workerId: 'worker123',
+        status: 'PENDING',
+        date: new Date().toISOString(),
+        link: 'https://example.com/job123',
+        // cv: 'https://example.com/resume123.pdf',
+        motivation: 'https://example.com/motivation123.pdf',
+        job: {
+            id: 'job123',
+            title: 'Software Engineer',
+        },
+        worker: {
+            id: 'worker123',
+            userId: 'user123',
+            firstName: 'John',
+            lastName: 'Doe',
+        },
+    },
+    {
+        id: '2',
+        jobId: 'job456',
+        workerId: 'worker456',
+        status: 'APPROVED',
+        date: new Date().toISOString(),
+        link: 'https://example.com/job456',
+        cv: 'https://example.com/resume456.pdf',
+        motivation: 'https://example.com/motivation456.pdf',
+        job: {
+            id: 'job456',
+            title: 'Project Manager',
+        },
+        worker: {
+            id: 'worker456',
+            userId: 'user456',
+            firstName: 'Jane',
+            lastName: 'Smith',
+        },
+    },
+];

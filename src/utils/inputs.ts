@@ -110,11 +110,9 @@ const resetInputs = [{ ...email }];
 
 //  APPLY
 const applyInputs = [
-    { label: 'Full Name', type: 'text', placeholder: 'Asher Warden', name: 'fullname', required: true, icon: faUser },
-    { ...email },
     { label: 'Website/Portfolio Link', type: 'text', placeholder: 'https://www.asher.me', name: 'link', required: false, icon: faUser },
-    { label: 'Upload Cv', type: 'file', placeholder: 'asher-cv.pdf', name: 'cv', required: true },
-    { label: 'Upload Motivation', type: 'file', placeholder: 'asher-motivation.pdf', name: 'motivation', required: true, icon: faUser },
+    { label: 'Upload Cv', type: 'file', placeholder: 'asher-cv.pdf', name: 'cv' },
+    { label: 'Upload Motivation', type: 'file', placeholder: 'asher-motivation.pdf', name: 'motivation', icon: faUser },
 ];
 // ADD JOB (JOB POST)
 const jobPostInputs = [

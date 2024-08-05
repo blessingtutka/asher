@@ -42,3 +42,31 @@ export interface Skill {
     name: string;
     percentage: number;
 }
+
+export interface Application {
+    id: string;
+    jobId: string;
+    workerId: string;
+    status: string;
+    date: string;
+    link?: string;
+    cv?: string;
+    motivation?: string;
+    job: {
+        id: string;
+        title: string;
+    };
+    worker: {
+        id: string;
+        userId: string;
+        firstName: string;
+        lastName: string;
+    };
+}
+
+export interface ApiResponse<T> {
+    status: string;
+    message: string;
+    data: T;
+    status_code: number;
+}

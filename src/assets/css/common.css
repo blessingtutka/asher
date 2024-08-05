@@ -150,4 +150,32 @@
     .editors ol {
         @apply ml-8 list-decimal;
     }
+    /* Table */
+    .mytable {
+        @apply p-0 !rounded-md overflow-hidden;
+        box-shadow:
+            rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+            rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    }
+    .mytable .table-link {
+        @apply text-gray-600 hover:!text-primary;
+    }
+    .table-action {
+        @apply text-white px-2 py-1 rounded;
+    }
+    .table-action.accept {
+        @apply bg-green-500 hover:bg-green-600;
+    }
+    .table-action.reject,
+    .table-action.delete {
+        @apply bg-red-500 hover:bg-red-600;
+    }
+
+    .table-action.update {
+        @apply bg-blue-500 hover:bg-blue-600;
+    }
+
+    .table-action.unset {
+        @apply bg-gray-500 hover:bg-gray-600;
+    }
 }

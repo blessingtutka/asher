@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Job } from '../../interfaces/detail';
 import { getJob } from '../../services/job.service';
+import { useUser } from '../../context/UserContext';
+import { Title } from '../../components/Common';
 import Error from '../../components/Common/Error';
 import notify from '../../utils/notificationService';
 import Loading from '../../components/Common/Loading';
 import PageBanner from '../../components/Common/PageBanner';
 import JobDetail from '../../components/detail/job/JobDetail';
+import JobApplicationList from '../../components/applications/JobApplicationList';
 
 const JobDetailPage: React.FC = () => {
     const { jobId } = useParams();
@@ -18,6 +21,11 @@ const JobDetailPage: React.FC = () => {
     if (!jobId) {
         return <Error message='Job ID is required' />;
     }
+
+    const { getUser } = useUser();
+    const user = getUser();
+
+    const isUserEmployer = job && job.employer?.userId === user?.id;
 
     useEffect(() => {
         const fetchJob = async () => {
@@ -42,6 +50,12 @@ const JobDetailPage: React.FC = () => {
             {job && (
                 <div className='flex flex-col my-5 justify-center items-center'>
                     <JobDetail job={job} />
+                    {isUserEmployer && (
+                        <div className='w-content mt-5'>
+                            <Title>Job Applications</Title>
+                            <JobApplicationList jobId={jobId} />
+                        </div>
+                    )}
                 </div>
             )}
         </div>

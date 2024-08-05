@@ -71,7 +71,7 @@ const Avatar: React.FC<AvatarProps> = ({ email, role }) => {
                             </li>
                         ) : (
                             <li className='link'>
-                                <Link className='dropdown-item' to='/employer/applications'>
+                                <Link className='dropdown-item' to='/worker/applications'>
                                     My Application
                                 </Link>
                             </li>

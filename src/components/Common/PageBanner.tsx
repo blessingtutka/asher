@@ -12,7 +12,7 @@ interface PageBannerProps {
 
 const PageBanner: React.FC<PageBannerProps> = ({ title, breadcrumbs }) => {
     return (
-        <div className='banner bg-primary text-white py-16 px-4'>
+        <div className='w-full banner bg-primary text-white py-16 px-4'>
             <div className='container mx-auto'>
                 <h1 className='text-4xl font-bold'>{title}</h1>
                 <nav className='mt-4'>

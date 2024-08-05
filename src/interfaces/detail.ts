@@ -14,6 +14,7 @@ export interface Job {
 }
 
 export interface Worker {
+    id: string;
     profile?: string;
     firstName?: string;
     lastName?: string;

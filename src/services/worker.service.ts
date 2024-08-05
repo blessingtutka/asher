@@ -9,6 +9,15 @@ interface ApiResponse<T> {
     status_code: number;
 }
 
+export const getAllWorkers = async (): Promise<ApiResponse<Worker[]>> => {
+    try {
+        const response: AxiosResponse<ApiResponse<Worker[]>> = await axiosClient.get(`worker/list`);
+        return response.data;
+    } catch (error: any) {
+        throw new Error(error.response?.data?.error?.message || 'Error fetching workers');
+    }
+};
+
 export const getWorkerProfile = async (workerId: string): Promise<ApiResponse<Worker>> => {
     try {
         const response: AxiosResponse<ApiResponse<Worker>> = await axiosClient.get(`worker/profile/${workerId}`);

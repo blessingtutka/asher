@@ -26,6 +26,7 @@ export const exampleEmployer: Employer = {
 };
 
 export const exampleWorker: Worker = {
+    id: 'uidjob',
     profile: 'https://example.com/worker-profile.jpg',
     firstName: 'Jane',
     lastName: 'Doe',

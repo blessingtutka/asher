@@ -25,7 +25,7 @@ const ApplyUpdateForm: React.FC = () => {
                 const response = await getApplication(appId);
                 setApply(response.data);
             } catch (err: any) {
-                notify.error(`Error fetching job: ${err.message}`);
+                notify.error(`Error fetching application`);
             } finally {
                 setLoading(false);
             }
@@ -37,12 +37,12 @@ const ApplyUpdateForm: React.FC = () => {
     const handleSubmit = async (data: FieldValues) => {
         setLoading(true);
         try {
-            const { workerId, worker, ...sended } = data;
+            const { workerId, worker, jobId, job, ...sended } = data;
             await updateApplication(appId, sended);
             navigate('/worker/applications');
-            notify.success('Applucation updated successfully!');
+            notify.success('Application updated successfully!');
         } catch (error: any) {
-            notify.error(`Error updating job: ${error.response?.data?.message || 'An error occurred.'}`);
+            notify.error(`Error updating application`);
         } finally {
             setLoading(false);
         }

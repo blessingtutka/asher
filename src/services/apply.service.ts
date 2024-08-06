@@ -3,6 +3,7 @@
 import axios from '../axios';
 import { AxiosResponse } from 'axios';
 import { Application } from '../interfaces/detail';
+import { convertToFormData } from '../utils/formData';
 
 interface ApiResponse<T> {
     status: string;
@@ -49,7 +50,10 @@ export const getAuthEmployerJobApplications = async (jobId: string): Promise<Api
 
 export const createApplication = async (applicationData: Partial<Application>): Promise<ApiResponse<Application>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Application>> = await axios.post('/apply/create', applicationData);
+        const formData = convertToFormData(applicationData);
+        const response: AxiosResponse<ApiResponse<Application>> = await axios.post('/apply/create', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error creating application');
@@ -58,7 +62,10 @@ export const createApplication = async (applicationData: Partial<Application>): 
 
 export const updateApplication = async (id: string, applicationData: Partial<Application>): Promise<ApiResponse<Application>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Application>> = await axios.put(`/apply/update/${id}`, applicationData);
+        const formData = convertToFormData(applicationData);
+        const response: AxiosResponse<ApiResponse<Application>> = await axios.put(`/apply/update/${id}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error updating application');

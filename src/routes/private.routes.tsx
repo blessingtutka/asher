@@ -7,6 +7,7 @@ import WorkerProfileSetting from '../pages/create/WorkerProfile';
 import WorkerProfile from '../pages/details/WorkerProfile';
 import WorkerApplicationPage from '../pages/list/WorkerApplicationPage';
 import ApplyPage from '../pages/ApplyPage';
+import ApplyUpdatePage from '../pages/update/ApplyUpdatePage';
 
 import ProtectedRoute from './protected.routes';
 
@@ -20,7 +21,7 @@ const privateRoutes = [
     { path: 'worker/profile', element: <ProtectedRoute role='WORKER' element={<WorkerProfile />} /> },
     { path: 'worker/applications', element: <WorkerApplicationPage /> },
     { path: 'apply/:jobTitle/:jobId', element: <ProtectedRoute role='WORKER' element={<ApplyPage />} /> },
-    { path: 'application/update/:appId', element: <ProtectedRoute role='WORKER' element={<ApplyPage />} /> },
+    { path: 'application/update/:appId', element: <ProtectedRoute role='WORKER' element={<ApplyUpdatePage />} /> },
 ];
 
 export default privateRoutes;

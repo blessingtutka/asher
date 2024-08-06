@@ -39,7 +39,7 @@ const Form: React.FC<FormProps> = ({ inputs, handleOnSubmit, initialValues, load
 
     return (
         <div className='login w-full flex flex-col gap-5'>
-            <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-4'>
+            <form onSubmit={handleSubmit(onSubmit)} encType='multipart/form' className='w-full flex flex-col gap-4'>
                 <div className='w-full flex flex-col gap-4'>
                     {inputs.map((input, index) => {
                         if (input.type === 'file' || input.type === 'image') {

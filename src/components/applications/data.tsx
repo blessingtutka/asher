@@ -53,6 +53,20 @@ export const workerColumns: TableColumn<Application>[] = [
         ),
     },
     {
+        name: 'My Portfolio',
+        selector: (row) => row.cv || 'No Portfolio',
+        sortable: true,
+        width: '200px',
+        cell: (row) =>
+            row.link ? (
+                <Link to={row.link} className='table-link'>
+                    My Portfolio link
+                </Link>
+            ) : (
+                'No Portfolio'
+            ),
+    },
+    {
         name: 'Date',
         selector: (row) => row.date,
         sortable: true,
@@ -107,11 +121,15 @@ export const workerColumns: TableColumn<Application>[] = [
         width: '100px',
         cell: (row) => {
             const navigate = useNavigate();
+
             return (
                 <div className='flex space-x-2'>
-                    <Link to={`/application/update/${row.id}`} className='table-action update'>
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                    </Link>
+                    {row.status == 'PENDING' && (
+                        <Link to={`/application/update/${row.id}`} className='table-action update'>
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                        </Link>
+                    )}
+
                     <button onClick={() => handleRemove(row.id, navigate)} className='table-action delete'>
                         <FontAwesomeIcon icon={faTrashCan} />
                     </button>
@@ -139,6 +157,20 @@ export const posterColumns: TableColumn<Application>[] = [
         sortable: true,
         width: '250px',
         cell: (row) => <>{formatDate(row.date)}</>,
+    },
+    {
+        name: 'Portfolio',
+        selector: (row) => row.cv || 'No Portfolio',
+        sortable: true,
+        width: '200px',
+        cell: (row) =>
+            row.link ? (
+                <Link to={row.link} className='table-link'>
+                    Portfolio link
+                </Link>
+            ) : (
+                'No Portfolio'
+            ),
     },
     {
         name: 'Resume',

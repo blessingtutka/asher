@@ -8,6 +8,7 @@ import { truncater } from '../../utils/truncater';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { deleteJob } from '../../services/job.service';
+import { joinUrl } from '../../utils/pathJoin';
 import JobImage from '../../assets/images/about-2.jpg';
 import logo from '../../assets/images/employer-logo.png';
 import notify from '../../utils/notificationService';
@@ -58,7 +59,11 @@ const JobItem: React.FC<JobProps> = ({ job }) => {
                     )}
                     <img src={job.image ? job.image : JobImage} alt='about-2' className='absolute z-0 top-0 left-0 w-full h-full object-cover' />
                     <div className='w-12 h-12 relative overflow-hidden z-2 border border-primary rounded-lg'>
-                        <img src={job.employer?.profile ? job.employer?.profile : logo} alt='log' className='w-full h-full object-cover' />
+                        <img
+                            src={job.employer?.profile ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, job.employer?.profile) : logo}
+                            alt='log'
+                            className='w-full h-full object-cover'
+                        />
                     </div>
                     <div className='w-full relative z-2 mt-auto pb-4'>
                         <Link to={`/employer/${job.employer?.id}`}>

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import jobImage from '../../../assets/images/about-2.jpg';
 import Emplogo from '../../../assets/images/employer-logo.png';
+import { joinUrl } from '../../../utils/pathJoin';
 
 interface JobImageProps {
     job: Job;
@@ -31,7 +32,7 @@ const JobImage: React.FC<JobImageProps> = ({ job }) => {
             />
             <div className='w-12 h-12 relative overflow-hidden z-2 border border-primary rounded-lg'>
                 <img
-                    src={job.employer?.profile ? job.employer.profile : Emplogo}
+                    src={job.employer?.profile ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, job.employer.profile) : Emplogo}
                     alt='Company Logo'
                     className='w-full h-full object-cover'
                     loading='lazy'

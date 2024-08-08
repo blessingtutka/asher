@@ -7,6 +7,7 @@ import { faCheckToSlot, faBan, faArrowRotateForward } from '@fortawesome/free-so
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteApplication, updateApplicationStatus } from '../../services/apply.service';
 import notify from '../../utils/notificationService';
+import { joinUrl } from '../../utils/pathJoin';
 
 interface UpdateStatusParams {
     id: string;
@@ -80,7 +81,7 @@ export const workerColumns: TableColumn<Application>[] = [
         width: '200px',
         cell: (row) =>
             row.cv ? (
-                <Link to={row.cv} className='table-link'>
+                <Link to={joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, row.cv)} className='table-link'>
                     My Resume link
                 </Link>
             ) : (
@@ -94,7 +95,7 @@ export const workerColumns: TableColumn<Application>[] = [
         width: '200px',
         cell: (row) =>
             row.motivation ? (
-                <Link to={row.motivation} className='table-link'>
+                <Link to={joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, row.motivation)} target='_blank' className='table-link'>
                     My Letter link
                 </Link>
             ) : (

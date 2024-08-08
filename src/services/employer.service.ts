@@ -1,5 +1,6 @@
 import axios from '../axios';
 import { AxiosResponse } from 'axios';
+import { convertToFormData } from '../utils/formData';
 
 interface Employer {
     id: string;
@@ -34,7 +35,10 @@ export const getYourEmployerProfile = async (): Promise<ApiResponse<Employer>> =
 
 export const setEmployerProfile = async (employerData: Partial<Employer>): Promise<ApiResponse<Employer>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Employer>> = await axios.put('/employer/profile-setting', employerData);
+        const formData = convertToFormData(employerData);
+        const response: AxiosResponse<ApiResponse<Employer>> = await axios.put('/employer/profile-setting', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error setting employer profile');

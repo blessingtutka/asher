@@ -1,6 +1,7 @@
 import axiosClient from '../axios';
 import { AxiosResponse } from 'axios';
 import { Worker } from '../interfaces/detail';
+import { convertToFormData } from '../utils/formData';
 
 interface ApiResponse<T> {
     status: string;
@@ -38,7 +39,10 @@ export const getAuthWorkerProfile = async (): Promise<ApiResponse<Worker>> => {
 
 export const setWorkerProfile = async (workerData: Partial<Worker>): Promise<ApiResponse<Worker>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Worker>> = await axiosClient.put('worker/profile-setting', workerData);
+        const formData = convertToFormData(workerData);
+        const response: AxiosResponse<ApiResponse<Worker>> = await axiosClient.put('worker/profile-setting', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error setting worker profile');

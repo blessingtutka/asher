@@ -152,9 +152,10 @@ const jobPostInputs = [
 const workerInputs = [
     { label: 'First Name', type: 'text', placeholder: 'Asher', name: 'firstName', icon: faClipboardUser },
     { label: 'Last Name', type: 'text', placeholder: 'Warden', name: 'lastName', required: true, icon: faClipboardUser },
+    { label: 'Your Prifile picture', type: 'image', placeholder: 'worker-profile.jpg', name: 'profile' },
     { label: 'Title', type: 'text', placeholder: 'Software Engineer', name: 'title', icon: faClipboardUser },
     { label: 'Bio', type: 'textarea', placeholder: 'Tell us about yourself...', name: 'bio', icon: faBookReader },
-    { label: 'Upload CV', type: 'file', placeholder: 'asher-cv.pdf', name: 'cv' },
+    { label: 'Upload CV', type: 'file', placeholder: 'asher-cv.pdf', name: 'cvFile' },
     { label: 'Activity', type: 'text', placeholder: 'Software Development', name: 'activity', icon: faUserGear },
     { label: 'Address', type: 'text', placeholder: '123 Main St, New York, NY', name: 'address', icon: faMapLocationDot },
     { label: 'Telephone', type: 'text', placeholder: '(555) 555-5555', name: 'telephone', icon: faSquarePhone },

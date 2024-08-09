@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Worker } from '../../../interfaces/detail';
+import { joinUrl } from '../../../utils/pathJoin';
 
 interface WorkerInfoProps {
     worker: Worker;
@@ -10,7 +11,13 @@ const WorkerInfo: React.FC<WorkerInfoProps> = ({ worker }) => {
     return (
         <div className='flex flex-col md:flex-row gap-8'>
             <div className='relative bg-gray-200 rounded-md h-64 w-64 mb-6 overflow-hidden'>
-                {worker.profile && <img src={worker.profile} alt='worker' className='absolute z-0 top-0 left-0 w-full h-full object-cover' />}
+                {worker.profile && (
+                    <img
+                        src={joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, worker.profile)}
+                        alt='worker'
+                        className='absolute z-0 top-0 left-0 w-full h-full object-cover'
+                    />
+                )}
             </div>
             <div className='info flex-1'>
                 <h1 className='text-3xl font-bold text-primary mb-2'>{`${worker.lastName || 'Last and '} ${worker.firstName || 'First name'}`}</h1>

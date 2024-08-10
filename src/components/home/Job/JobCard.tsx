@@ -34,7 +34,11 @@ const JobCard: React.FC<JobCardProps> = ({ item }) => {
 
     return (
         <div className={`job-card w-72 ${active ? 'active' : ''} h-96 rounded-xl overflow-hidden relative transition-all duration-100`}>
-            <img src={item.image ? item.image : JobImage} alt='Background' className='w-full h-full object-cover absolute top-0 left-0' />
+            <img
+                src={item.image ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, item.image) : JobImage}
+                alt='Background'
+                className='w-full h-full object-cover absolute top-0 left-0'
+            />
             <div className='flex flex-col relative z-10 p-4 h-full'>
                 <div className='flex justify-between items-start'>
                     <div className='w-14 h-14 border-2 border-tertiary rounded-full overflow-hidden'>

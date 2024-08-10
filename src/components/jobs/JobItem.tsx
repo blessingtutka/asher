@@ -57,7 +57,11 @@ const JobItem: React.FC<JobProps> = ({ job }) => {
                             <FontAwesomeIcon icon={faTrashAlt} className='mr-1' /> <span className='text'>Delete</span>
                         </button>
                     )}
-                    <img src={job.image ? job.image : JobImage} alt='about-2' className='absolute z-0 top-0 left-0 w-full h-full object-cover' />
+                    <img
+                        src={job.image ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, job.image) : JobImage}
+                        alt='about-2'
+                        className='absolute z-0 top-0 left-0 w-full h-full object-cover'
+                    />
                     <div className='w-12 h-12 relative overflow-hidden z-2 border border-primary rounded-lg'>
                         <img
                             src={job.employer?.profile ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, job.employer?.profile) : logo}

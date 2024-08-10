@@ -25,7 +25,7 @@ const JobImage: React.FC<JobImageProps> = ({ job }) => {
                 </Link>
             )}
             <img
-                src={job.image ? job.image : jobImage}
+                src={job.image ? joinUrl(import.meta.env.VITE_UPLOAD_BASE_URL, job.image) : jobImage}
                 alt='Job Image'
                 className='absolute z-0 top-0 left-0 w-full h-full object-cover'
                 loading='lazy'

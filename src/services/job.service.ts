@@ -1,6 +1,7 @@
 import axios from '../axios';
 import { Job } from '../interfaces/detail';
 import { AxiosResponse } from 'axios';
+import { convertToFormData } from '../utils/formData';
 
 interface ApiResponse<T> {
     status: string;
@@ -38,7 +39,10 @@ export const getAuthEmployerJobs = async (): Promise<ApiResponse<Job[]>> => {
 
 export const createJob = async (jobData: Partial<Job>): Promise<ApiResponse<Job>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Job>> = await axios.post('/job/create', jobData);
+        const formData = convertToFormData(jobData);
+        const response: AxiosResponse<ApiResponse<Job>> = await axios.post('/job/create', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error creating job');
@@ -47,7 +51,10 @@ export const createJob = async (jobData: Partial<Job>): Promise<ApiResponse<Job>
 
 export const updateJob = async (id: string, jobData: Partial<Job>): Promise<ApiResponse<Job>> => {
     try {
-        const response: AxiosResponse<ApiResponse<Job>> = await axios.put(`/job/update/${id}`, jobData);
+        const formData = convertToFormData(jobData);
+        const response: AxiosResponse<ApiResponse<Job>> = await axios.put(`/job/update/${id}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
         return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error?.message || 'Error updating job');

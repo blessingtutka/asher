@@ -9,7 +9,7 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "format": "prettier src/**/*.{ts,tsx} --write",
         "preview": "vite preview",
-        "prepare": "husky"
+        "prepare": "husky install"
     },
     "dependencies": {
         "@cloudinary/react": "^1.13.0",
@@ -50,7 +50,8 @@
         "eslint-plugin-react": "^7.34.1",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.6",
-        "husky": "^9.0.11",
+        "husky": "^9.1.4",
+        "lint-staged": "^15.2.8",
         "postcss": "^8.4.38",
         "prettier": "3.3.2",
         "tailwind-bootstrap-grid": "^5.1.0",

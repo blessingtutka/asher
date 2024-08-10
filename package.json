@@ -60,10 +60,7 @@
         "vite-plugin-svgr": "^4.2.0"
     },
     "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx}": [
-            "eslint --quiet --fix",
-            "prettier --write"
-        ]
+        "**/*": "prettier --write --ignore-unknown"
     },
     "commitlint": {
         "extends": [

@@ -1,4 +1,6 @@
-const jobCategory = [
+import { OptionsOrGroups, GroupBase } from 'react-select';
+
+const jobCategory: OptionsOrGroups<any, GroupBase<any>> = [
     { label: 'Software Engineer', value: 'Software Engineer' },
     { label: 'Data Scientist', value: 'Data Scientist' },
     { label: 'Product Manager', value: 'Product Manager' },

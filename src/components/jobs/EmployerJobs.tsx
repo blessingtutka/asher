@@ -4,7 +4,7 @@ import { Job } from '../../interfaces/detail';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Title, Pagination, SearchForm } from '../../components/Common';
-import { getAllJobs } from '../../services/job.service';
+import { getAllJobs, searchJobs } from '../../services/job.service';
 import JobItem from './JobItem';
 import Loading from '../../components/Common/Loading';
 import Error from '../../components/Common/Error';
@@ -33,6 +33,19 @@ const EmployerJobs: React.FC = () => {
         fetchEmployerJobs();
     }, []);
 
+    const handleSearch = async (name: string, category: string) => {
+        try {
+            setLoading(true);
+            const response = await searchJobs(name, category);
+            setJobs(response.data);
+            setError(null);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -48,7 +61,7 @@ const EmployerJobs: React.FC = () => {
                 <Link to={'/job/post'} className='links self-start links bg-slate-300 rounded-md p-2'>
                     <FontAwesomeIcon icon={faAdd} className='mr-1' /> Post a job
                 </Link>
-                <SearchForm />
+                <SearchForm onSearch={handleSearch} />
             </div>
             {loading ? (
                 <Loading className='!h-16' />

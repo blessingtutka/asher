@@ -69,3 +69,14 @@ export const deleteJob = async (id: string): Promise<ApiResponse<Job>> => {
         throw new Error(error.response?.data?.error?.message || 'Error deleting job');
     }
 };
+
+export const searchJobs = async (name: string, category: string): Promise<ApiResponse<Job[]>> => {
+    try {
+        const response: AxiosResponse<ApiResponse<Job[]>> = await axios.get('/job/search', {
+            params: { name, category },
+        });
+        return response.data;
+    } catch (error: any) {
+        throw new Error(error.response?.data?.error?.message || 'Error searching jobs');
+    }
+};

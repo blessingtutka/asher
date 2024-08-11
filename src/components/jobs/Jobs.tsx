@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Title, Pagination, SearchForm } from '../Common';
 import { Job } from '../../interfaces/detail';
-import { getAllJobs } from '../../services/job.service';
+import { getAllJobs, searchJobs } from '../../services/job.service';
 import JobItem from './JobItem';
 import Loading from '../../components/Common/Loading';
 import Error from '../../components/Common/Error';
 import Empty from '../../components/Common/Empty';
+
 const ITEMS_PER_PAGE = 4;
 
 const Jobs: React.FC = () => {
@@ -14,20 +15,35 @@ const Jobs: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchEmployerJobs = async () => {
-            try {
-                const response = await getAllJobs();
-                setJobs(response.data);
-            } catch (err: any) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchJobs = async () => {
+        try {
+            setLoading(true);
+            const response = await getAllJobs();
+            setJobs(response.data);
+            setError(null);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        fetchEmployerJobs();
+    useEffect(() => {
+        fetchJobs();
     }, []);
+
+    const handleSearch = async (name: string, category: string) => {
+        try {
+            setLoading(true);
+            const response = await searchJobs(name, category);
+            setJobs(response.data);
+            setError(null);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -41,7 +57,7 @@ const Jobs: React.FC = () => {
                 Job Listings
             </Title>
             <div className='flex w-full justify-end mb-5'>
-                <SearchForm />
+                <SearchForm onSearch={handleSearch} />
             </div>
             {loading ? (
                 <Loading className='!h-16' />

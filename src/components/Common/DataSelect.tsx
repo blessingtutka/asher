@@ -31,18 +31,26 @@ const customOption = (props: OptionProps<OptionType, false, GroupBase<OptionType
 );
 
 const DataSelect: React.FC<DataSelectProps> = ({ placeholder, name, onChange, loadOptions, defaultValue, errors }) => {
-    const [initialOption, setInitialOption] = useState<OptionType | null>(null);
+    const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
     const errorMessages = errors && (errors[name]?.message as string);
     const hasError = !!errorMessages;
 
     useEffect(() => {
         if (defaultValue) {
             loadOptions(formatString(defaultValue)).then((options) => {
-                const option = options.find((opt) => opt.value == defaultValue);
-                setInitialOption(option || null);
+                const option = options.find((opt) => opt.value === defaultValue);
+                setSelectedOption(option || null);
             });
         }
     }, [defaultValue, loadOptions]);
+
+    const handleChange = (newValue: OnChangeValue<OptionType, false>, actionMeta: ActionMeta<OptionType>) => {
+        setSelectedOption(newValue as OptionType);
+        if (onChange) {
+            onChange(newValue, actionMeta);
+        }
+    };
+
     return (
         <div className='formInput flex flex-col gap-2'>
             <AsyncSelect
@@ -65,10 +73,10 @@ const DataSelect: React.FC<DataSelectProps> = ({ placeholder, name, onChange, lo
                     menuPortal: (provided) => ({ ...provided, zIndex: 99999 }),
                     menu: (provided) => ({ ...provided, zIndex: 99999 }),
                 }}
-                onChange={onChange}
+                onChange={handleChange}
                 menuPortalTarget={document.body}
                 components={{ Option: customOption }}
-                {...(initialOption ? { value: initialOption } : {})}
+                value={selectedOption}
             />
             {hasError && (
                 <span className='text-red-600'>

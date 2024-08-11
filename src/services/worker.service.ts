@@ -57,3 +57,14 @@ export const deleteWorkerProfile = async (): Promise<ApiResponse<null>> => {
         throw new Error(error.response?.data?.error?.message || 'Error deleting worker profile');
     }
 };
+
+export const searchWorkers = async (name: string, title: string): Promise<ApiResponse<Worker[]>> => {
+    try {
+        const response: AxiosResponse<ApiResponse<Worker[]>> = await axiosClient.get('/worker/search', {
+            params: { name, title },
+        });
+        return response.data;
+    } catch (error: any) {
+        throw new Error(error.response?.data?.error?.message || 'Error searching workers');
+    }
+};

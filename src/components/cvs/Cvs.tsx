@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getAllWorkers } from '../../services/worker.service';
+import { getAllWorkers, searchWorkers } from '../../services/worker.service';
 import { Worker, ApiResponse } from '../../interfaces/detail';
-import { Title, Pagination, JobSearchForm, Loading, Error, Empty } from '../Common';
+import { Title, Pagination, WorkerSearchForm, Loading, Error, Empty } from '../Common';
 import CvCard from './CvCard';
 
 const ITEMS_PER_PAGE = 9;
@@ -28,6 +28,19 @@ const Cvs: React.FC = () => {
         fetchAllWorkers();
     }, []);
 
+    const handleSearch = async (name: string, category: string) => {
+        try {
+            setLoading(true);
+            const response = await searchWorkers(name, category);
+            setWorkers(response.data);
+            setError(null);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -39,7 +52,7 @@ const Cvs: React.FC = () => {
             <Title subtitle='Featured Talents' className='col-12'>
                 Resume Listings
             </Title>
-            <JobSearchForm />
+            <WorkerSearchForm onSearch={handleSearch} />
             {loading ? (
                 <Loading className='!h-16' />
             ) : error ? (

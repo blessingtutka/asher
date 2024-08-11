@@ -10,6 +10,7 @@ import FormInput from './Input';
 import Pagination from './Pagination';
 import PageBanner from './PageBanner';
 import JobSearchForm from './JobSearchForm';
+import WorkerSearchForm from './WorkerSearchForm';
 import DataTable from 'react-data-table-component';
 
-export { Title, Text, Carousel, Pagination, JobSearchForm, Editor, Form, Error, Empty, Loading, FormInput, PageBanner, DataTable };
+export { Title, Text, Carousel, Pagination, JobSearchForm, Editor, Form, Error, Empty, Loading, FormInput, PageBanner, DataTable, WorkerSearchForm };

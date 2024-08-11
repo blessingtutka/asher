@@ -1,5 +1,5 @@
 import React from 'react';
-import PageBanner from '../../components/Common/PageBanner';
+import { PageBanner } from '../../components/Common';
 import WorkerApplicationList from '../../components/applications/WorkerApplicationList';
 
 const WorkerApplicationPage: React.FC = () => {

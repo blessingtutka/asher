@@ -1,5 +1,5 @@
 import React from 'react';
-import PageBanner from '../../components/Common/PageBanner';
+import { PageBanner } from '../../components/Common';
 import EmployerJobs from '../../components/jobs/EmployerJobs';
 
 const EmployerJobsPage: React.FC = () => {

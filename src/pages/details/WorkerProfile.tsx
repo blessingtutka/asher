@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenClip } from '@fortawesome/free-solid-svg-icons';
 import { exampleWorker } from '../../components/detail/data';
+import { Loading, PageBanner } from '../../components/Common';
 import { getAuthWorkerProfile } from '../../services/worker.service';
-import PageBanner from '../../components/Common/PageBanner';
 import { Worker } from '../../interfaces/detail';
 import WorkerDetail from '../../components/detail/worker/WorkerDetail';
-import Loading from '../../components/Common/Loading';
 const WorkerProfile: React.FC = () => {
     const [worker, setWorker] = useState<Worker | null>(null);
     const [loading, setLoading] = useState<boolean>(true);

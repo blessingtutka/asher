@@ -1,5 +1,5 @@
 import ApplyForm from '../components/form/ApplyForm';
-import PageBanner from '../components/Common/PageBanner';
+import { PageBanner } from '../components/Common';
 import { useParams } from 'react-router-dom';
 export default function ApplyPage() {
     const { jobTitle, jobId } = useParams<{ jobTitle: string; jobId: string }>();

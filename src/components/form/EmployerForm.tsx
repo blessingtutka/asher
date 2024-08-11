@@ -1,4 +1,4 @@
-import Form from '../Common/Form';
+import { Form } from '../Common';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getYourEmployerProfile, setEmployerProfile } from '../../services/employer.service';

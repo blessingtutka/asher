@@ -1,5 +1,5 @@
+import { PageBanner } from '../../components/Common';
 import ApplyUpdateForm from '../../components/form/AppyUpdateForm';
-import PageBanner from '../../components/Common/PageBanner';
 
 export default function ApplyUpdatePage() {
     const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Update Job' }];

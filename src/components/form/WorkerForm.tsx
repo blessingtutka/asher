@@ -1,5 +1,5 @@
-import Form from '../Common/Form';
 import { useState, useEffect } from 'react';
+import { Form } from '../Common';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
 import { workerInputs } from '../../utils/inputs';

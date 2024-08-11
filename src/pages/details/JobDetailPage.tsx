@@ -3,11 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Job } from '../../interfaces/detail';
 import { getJob } from '../../services/job.service';
 import { useUser } from '../../context/UserContext';
-import { Title } from '../../components/Common';
-import Error from '../../components/Common/Error';
+import { Title, PageBanner, Loading, Error } from '../../components/Common';
 import notify from '../../utils/notificationService';
-import Loading from '../../components/Common/Loading';
-import PageBanner from '../../components/Common/PageBanner';
 import JobDetail from '../../components/detail/job/JobDetail';
 import JobApplicationList from '../../components/applications/JobApplicationList';
 

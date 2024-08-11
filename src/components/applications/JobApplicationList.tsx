@@ -4,8 +4,7 @@ import { Application, ApiResponse } from '../../interfaces/detail';
 import { posterColumns } from './data';
 import { getAuthEmployerJobApplications } from '../../services/apply.service';
 import { DataTable } from '../list/DataTable';
-import Loading from '../Common/Loading';
-import Error from '../Common/Error';
+import { Loading, Error } from '../Common';
 
 const JobApplicationList: React.FC<{ jobId?: string }> = ({ jobId }) => {
     const [data, setData] = useState<Application[]>([]);

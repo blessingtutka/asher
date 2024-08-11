@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
 import { applyInputs } from '../../utils/inputs';
 import { createApplication } from '../../services/apply.service';
-import Form from '../Common/Form';
+import { Form } from '../Common';
 import notify from '../../utils/notificationService';
 
 const ApplyForm: React.FC<{ jobId?: string }> = ({ jobId }) => {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import PageBanner from '../../components/Common/PageBanner';
-import EmployerDetail from '../../components/detail/employer/EmployerDetail';
 import { Link } from 'react-router-dom';
-import Loading from '../../components/Common/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenClip } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { exampleEmployer } from '../../components/detail/data';
+import { PageBanner, Loading } from '../../components/Common';
 import { getYourEmployerProfile } from '../../services/employer.service';
+import EmployerDetail from '../../components/detail/employer/EmployerDetail';
+
 const EmployerProfile: React.FC = () => {
     const [employer, setEmployer] = useState<any | null>(null);
     const [loading, setLoading] = useState<boolean>(true);

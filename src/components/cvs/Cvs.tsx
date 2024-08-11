@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllWorkers } from '../../services/worker.service';
-import { Title, Pagination, JobSearchForm } from '../Common';
 import { Worker, ApiResponse } from '../../interfaces/detail';
-import Loading from '../Common/Loading';
-import Error from '../Common/Error';
-import Empty from '../Common/Empty';
+import { Title, Pagination, JobSearchForm, Loading, Error, Empty } from '../Common';
 import CvCard from './CvCard';
 
 const ITEMS_PER_PAGE = 9;

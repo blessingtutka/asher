@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import PageBanner from '../components/Common/PageBanner';
+import { PageBanner } from '../components/Common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Form, Error } from '../Common';
 import { FieldValues } from 'react-hook-form';
 import { applyInputs } from '../../utils/inputs';
 import { Application } from '../../interfaces/detail';
 import { getApplication, updateApplication } from '../../services/apply.service';
-import Form from '../Common/Form';
-import Error from '../Common/Error';
+
 import notify from '../../utils/notificationService';
 
 const ApplyUpdateForm: React.FC = () => {

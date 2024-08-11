@@ -1,5 +1,6 @@
 import EmployerForm from '../../components/form/EmployerForm';
-import PageBanner from '../../components/Common/PageBanner';
+import { PageBanner } from '../../components/Common';
+
 export default function EmployerProfile() {
     const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'profile' }];
     return (

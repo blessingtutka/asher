@@ -5,9 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { getAllJobs } from '../../../services/job.service';
 import { Job } from '../../../interfaces/detail';
-import Loading from '../../../components/Common/Loading';
-import Error from '../../../components/Common/Error';
-import Empty from '../../../components/Common/Empty';
+import { Loading, Error, Empty } from '../../Common';
 
 const JobNavigation = () => (
     <div className='absolute top-0 right-[30%] md:right-5 flex gap-3'>

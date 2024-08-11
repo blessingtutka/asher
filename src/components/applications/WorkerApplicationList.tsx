@@ -4,8 +4,7 @@ import { workerColumns } from './data';
 import { getAuthWorkerApplications } from '../../services/apply.service';
 import { DataTable } from '../list/DataTable';
 import { Title } from '../Common';
-import Loading from '../Common/Loading';
-import Error from '../Common/Error';
+import { Loading, Error } from '../Common';
 
 const WorkerApplicationList: React.FC = () => {
     const [data, setData] = useState<Application[]>([]);

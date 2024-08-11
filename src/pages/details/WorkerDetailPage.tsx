@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Worker } from '../../interfaces/detail';
 import { getWorkerProfile } from '../../services/worker.service';
 import { exampleWorker } from '../../components/detail/data';
-import { Worker } from '../../interfaces/detail';
-import PageBanner from '../../components/Common/PageBanner';
+import { PageBanner, Loading, Error } from '../../components/Common';
 import WorkerDetail from '../../components/detail/worker/WorkerDetail';
-import Loading from '../../components/Common/Loading';
-import Error from '../../components/Common/Error';
 
 const WorkerDetailPage: React.FC = () => {
     const { workerId } = useParams();

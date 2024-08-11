@@ -1,5 +1,6 @@
 import Cvs from '../components/cvs/Cvs';
-import PageBanner from '../components/Common/PageBanner';
+import { PageBanner } from '../components/Common';
+
 export default function CvPage() {
     const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'CV Search' }];
     return (

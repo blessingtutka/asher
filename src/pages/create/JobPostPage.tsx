@@ -1,5 +1,6 @@
 import JobPostForm from '../../components/form/JobPostForm';
-import PageBanner from '../../components/Common/PageBanner';
+import { PageBanner } from '../../components/Common';
+
 export default function JobPost() {
     const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Post a Job' }];
     return (

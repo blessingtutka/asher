@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Form } from '../Common';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
 import { jobPostInputs } from '../../utils/inputs';
 import { createJob } from '../../services/job.service';
 import notify from '../../utils/notificationService';
-import Form from '../Common/Form';
 
 const JobPostForm: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);

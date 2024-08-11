@@ -4,8 +4,7 @@ import { FieldValues } from 'react-hook-form';
 import { jobPostInputs } from '../../utils/inputs';
 import { Job } from '../../interfaces/detail';
 import { getJob, updateJob } from '../../services/job.service';
-import Form from '../Common/Form';
-import Error from '../Common/Error';
+import { Form, Error } from '../Common';
 import notify from '../../utils/notificationService';
 
 const JobUpdateForm = () => {

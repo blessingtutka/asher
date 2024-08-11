@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Title, Pagination, JobSearchForm } from '../Common';
+import { Title, Pagination, JobSearchForm, Loading, Error, Empty } from '../Common';
 import { Job } from '../../interfaces/detail';
 import { getAllJobs, searchJobs } from '../../services/job.service';
 import JobItem from './JobItem';
-import Loading from '../../components/Common/Loading';
-import Error from '../../components/Common/Error';
-import Empty from '../../components/Common/Empty';
 
 const ITEMS_PER_PAGE = 4;
 

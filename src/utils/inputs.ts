@@ -153,7 +153,7 @@ const workerInputs = [
     { label: 'First Name', type: 'text', placeholder: 'Asher', name: 'firstName', icon: faClipboardUser },
     { label: 'Last Name', type: 'text', placeholder: 'Warden', name: 'lastName', required: true, icon: faClipboardUser },
     { label: 'Your Prifile picture', type: 'image', placeholder: 'worker-profile.jpg', name: 'profile' },
-    { label: 'Title', type: 'text', placeholder: 'Software Engineer', name: 'title', icon: faClipboardUser },
+    { label: 'Title', type: 'select', placeholder: 'Select a title ...', name: 'title', icon: faClipboardUser, options: jobCategoryLoadOptions },
     { label: 'Bio', type: 'textarea', placeholder: 'Tell us about yourself...', name: 'bio', icon: faBookReader },
     { label: 'Upload CV', type: 'file', placeholder: 'asher-cv.pdf', name: 'cvFile' },
     { label: 'Activity', type: 'text', placeholder: 'Software Development', name: 'activity', icon: faUserGear },

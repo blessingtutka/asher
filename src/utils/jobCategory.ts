@@ -15,6 +15,8 @@ const jobCategory: OptionsOrGroups<any, GroupBase<any>> = [
     { label: 'Operations Manager', value: 'Operations Manager' },
     { label: 'Business Analyst', value: 'Business Analyst' },
     { label: 'Software Developer', value: 'Software Developer' },
+    { label: 'Backend Dev', value: 'Backend Dev' },
+    { label: 'Frontend Dev', value: 'Frontend Dev' },
     { label: 'Web Developer', value: 'Web Developer' },
     { label: 'UX/UI Designer', value: 'UX/UI Designer' },
     { label: 'Data Analyst', value: 'Data Analyst' },

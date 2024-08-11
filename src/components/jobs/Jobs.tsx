@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Title, Pagination, SearchForm } from '../Common';
+import { Title, Pagination, JobSearchForm } from '../Common';
 import { Job } from '../../interfaces/detail';
 import { getAllJobs, searchJobs } from '../../services/job.service';
 import JobItem from './JobItem';
@@ -57,7 +57,7 @@ const Jobs: React.FC = () => {
                 Job Listings
             </Title>
             <div className='flex w-full justify-end mb-5'>
-                <SearchForm onSearch={handleSearch} />
+                <JobSearchForm onSearch={handleSearch} />
             </div>
             {loading ? (
                 <Loading className='!h-16' />

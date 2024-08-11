@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Job } from '../../interfaces/detail';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Title, Pagination, SearchForm } from '../../components/Common';
+import { Title, Pagination, JobSearchForm } from '../../components/Common';
 import { getAllJobs, searchJobs } from '../../services/job.service';
 import JobItem from './JobItem';
 import Loading from '../../components/Common/Loading';
@@ -61,7 +61,7 @@ const EmployerJobs: React.FC = () => {
                 <Link to={'/job/post'} className='links self-start links bg-slate-300 rounded-md p-2'>
                     <FontAwesomeIcon icon={faAdd} className='mr-1' /> Post a job
                 </Link>
-                <SearchForm onSearch={handleSearch} />
+                <JobSearchForm onSearch={handleSearch} />
             </div>
             {loading ? (
                 <Loading className='!h-16' />

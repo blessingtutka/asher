@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllWorkers } from '../../services/worker.service';
-import { Title, Pagination, SearchForm } from '../Common';
+import { Title, Pagination, JobSearchForm } from '../Common';
 import { Worker, ApiResponse } from '../../interfaces/detail';
 import Loading from '../Common/Loading';
 import Error from '../Common/Error';
@@ -42,7 +42,7 @@ const Cvs: React.FC = () => {
             <Title subtitle='Featured Talents' className='col-12'>
                 Resume Listings
             </Title>
-            <SearchForm />
+            <JobSearchForm />
             {loading ? (
                 <Loading className='!h-16' />
             ) : error ? (

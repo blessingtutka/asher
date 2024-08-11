@@ -4,7 +4,7 @@ import Select from 'react-select';
 import jobCategory from '../../utils/jobCategory';
 import { SearchIcon } from '../../assets/images/icons';
 
-interface SearchFormProps {
+interface JobSearchFormProps {
     onSearch?: (name: string, category: string) => void;
 }
 
@@ -13,7 +13,7 @@ interface SearchData {
     category: string;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
+const JobSearchForm: React.FC<JobSearchFormProps> = ({ onSearch }) => {
     const { register, handleSubmit, control, reset } = useForm<SearchData>({
         defaultValues: {
             category: '',
@@ -68,4 +68,4 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
     );
 };
 
-export default SearchForm;
+export default JobSearchForm;

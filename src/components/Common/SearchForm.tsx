@@ -17,6 +17,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
     const { register, handleSubmit, control, reset } = useForm<SearchData>({
         defaultValues: {
             category: '',
+            name: '',
         },
     });
 
@@ -24,7 +25,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
         if (onSearch) {
             onSearch(data.name, data.category);
         }
-        reset({ category: '' });
+        reset({ category: '', name: '' });
     };
 
     return (

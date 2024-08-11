@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import { Application, ApiResponse } from '../../interfaces/detail';
 import { posterColumns } from './data';
 import { getAuthEmployerJobApplications } from '../../services/apply.service';
-import { DataTable } from '../list/DataTable';
-import { Loading, Error } from '../Common';
+import { Loading, Error, DataTable } from '../Common';
 
 const JobApplicationList: React.FC<{ jobId?: string }> = ({ jobId }) => {
     const [data, setData] = useState<Application[]>([]);
